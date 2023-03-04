@@ -1,0 +1,893 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Jianing Chen">
+  <meta name="keywords" content="C++">
+  
+    <meta name="description" content="一. 打开打开SQL sever management studio -&gt; connect -&gt; 新建一个query 二. SQL语句 SQL语句对大小写不敏感，分为DDL（数据定义）语句，DML（数据操作）语句。 DDL语句: 创建、删除、增加索引、键、约束 CREATE DATABASE - 创建新数据库 ALTER DATABASE - 修改数据库 CREATE TABLE -">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL语法总结">
+<meta property="og:url" content="http://beidaoxiangcai.github.io/2021/09/14/sql%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="佳柠的博客">
+<meta property="og:description" content="一. 打开打开SQL sever management studio -&gt; connect -&gt; 新建一个query 二. SQL语句 SQL语句对大小写不敏感，分为DDL（数据定义）语句，DML（数据操作）语句。 DDL语句: 创建、删除、增加索引、键、约束 CREATE DATABASE - 创建新数据库 ALTER DATABASE - 修改数据库 CREATE TABLE -">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://beidaoxiangcai.github.io/img/page/shell.png">
+<meta property="article:published_time" content="2021-09-14T19:35:11.000Z">
+<meta property="article:modified_time" content="2023-03-04T14:32:42.224Z">
+<meta property="article:author" content="Jianing Chen">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://beidaoxiangcai.github.io/img/page/shell.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>SQL语法总结 - 佳柠的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"beidaoxiangcai.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>佳柠的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SQL语法总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-09-14 21:35" pubdate>
+          2021年9月14日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          7.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          65 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SQL语法总结</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一-打开"><a href="#一-打开" class="headerlink" title="一. 打开"></a>一. 打开</h1><p>打开SQL sever management studio -&gt; connect -&gt; 新建一个query</p>
+<h1 id="二-SQL语句"><a href="#二-SQL语句" class="headerlink" title="二. SQL语句"></a>二. SQL语句</h1><blockquote>
+<p>SQL语句对大小写不敏感，分为DDL（数据定义）语句，DML（数据操作）语句。</p>
+<h4 id="DDL语句-创建、删除、增加索引、键、约束"><a href="#DDL语句-创建、删除、增加索引、键、约束" class="headerlink" title="DDL语句: 创建、删除、增加索引、键、约束"></a>DDL语句: 创建、删除、增加索引、键、约束</h4><ul>
+<li>CREATE DATABASE - 创建新数据库</li>
+<li>ALTER DATABASE - 修改数据库</li>
+<li>CREATE TABLE - 创建新表</li>
+<li>ALTER TABLE - 变更（改变）数据库表</li>
+<li>DROP TABLE - 删除表</li>
+<li>CREATE INDEX - 创建索引（搜索键）</li>
+<li>DROP INDEX - 删除索引</li>
+</ul>
+<h4 id="DML语句：查询和更新"><a href="#DML语句：查询和更新" class="headerlink" title="DML语句：查询和更新"></a>DML语句：查询和更新</h4><ul>
+<li>SELECT - 从数据库表中获取数据</li>
+<li>UPDATE - 更新数据库表中的数据</li>
+<li>DELETE - 从数据库表中删除数据</li>
+<li>INSERT INTO - 向数据库表中插入数据</li>
+</ul>
+</blockquote>
+<h3 id="1-切换数据库"><a href="#1-切换数据库" class="headerlink" title="1. 切换数据库"></a>1. 切换数据库</h3><p> <code>use database_name</code></p>
+<h3 id="2-创建数据库"><a href="#2-创建数据库" class="headerlink" title="2. 创建数据库"></a>2. 创建数据库</h3><p> <code>create database database_name</code></p>
+<h3 id="3-创建表"><a href="#3-创建表" class="headerlink" title="3. 创建表"></a>3. 创建表</h3><blockquote>
+<p>create table 表名(<br> 列名1 数据类型 是否为空（可省略）,<br> 列名2 数据类型 是否为空（可省略）,<br> …<br> )<br> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"> <span class="hljs-operator">/</span><span class="hljs-operator">/</span>建表students, 主键为student__ID<br> <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> students(<br> s_ID <span class="hljs-type">int</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">primary</span> key,<br> s_name <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,<br> s_sex <span class="hljs-type">char</span>(<span class="hljs-number">2</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,<br> s_phoneNumber <span class="hljs-type">varchar</span>(<span class="hljs-number">11</span>)<br>)<br></code></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="4-删除表"><a href="#4-删除表" class="headerlink" title="4. 删除表"></a>4. 删除表</h3><p> <code>drop table table_name</code></p>
+<h3 id="5-插入数据"><a href="#5-插入数据" class="headerlink" title="5. 插入数据"></a>5. 插入数据</h3><blockquote>
+<ul>
+<li>可不写全所有列<br> insert into table_name(列名1，列名2，..)values(值1，值2，..)  </li>
+<li>省略列名，必须写全所有列<br>insert into table_name values(值1，值2，..)</li>
+<li>一次性插入多组值<br> insert into table_name values<br> (值1，值2，..)，<br> (值1，值2，..)，<br> (值1，值2，..)<br> <strong>注</strong>：字符串用单引号括起来 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql"> <span class="hljs-operator">/</span><span class="hljs-operator">/</span>方法<span class="hljs-number">1</span><br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> students(s_ID, s_name, s_sex, s_phoneNumber)<span class="hljs-keyword">values</span>(<span class="hljs-number">01</span>, <span class="hljs-string">&#x27;tom&#x27;</span>, <span class="hljs-string">&#x27;男&#x27;</span>,<span class="hljs-string">&#x27;121212121&#x27;</span>)<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> students(s_ID, s_name, s_sex)<span class="hljs-keyword">values</span>(<span class="hljs-number">06</span>, <span class="hljs-string">&#x27;luna&#x27;</span>, <span class="hljs-string">&#x27;女&#x27;</span>)<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>方法<span class="hljs-number">2</span><br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> students <span class="hljs-keyword">values</span>(<span class="hljs-number">02</span>, <span class="hljs-string">&#x27;jack&#x27;</span>, <span class="hljs-string">&#x27;男&#x27;</span>,<span class="hljs-string">&#x27;221212121&#x27;</span>)<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>方法<span class="hljs-number">3</span><br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> students <span class="hljs-keyword">values</span><br>(<span class="hljs-number">03</span>, <span class="hljs-string">&#x27;Amy&#x27;</span>, <span class="hljs-string">&#x27;女&#x27;</span>,<span class="hljs-string">&#x27;201212121&#x27;</span>),<br>(<span class="hljs-number">04</span>, <span class="hljs-string">&#x27;bree&#x27;</span>, <span class="hljs-string">&#x27;女&#x27;</span>,<span class="hljs-string">&#x27;921212121&#x27;</span>),<br>(<span class="hljs-number">05</span>, <span class="hljs-string">&#x27;mike&#x27;</span>, <span class="hljs-string">&#x27;男&#x27;</span>,<span class="hljs-string">&#x27;821212121&#x27;</span>)<br></code></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+<h3 id="6-删除数据"><a href="#6-删除数据" class="headerlink" title="6. 删除数据"></a>6. 删除数据</h3><blockquote>
+<p>delete from 表名 where 条件，&#x3D;&#x3D;没有条件的话，整张表都会被删除&#x3D;&#x3D;<br> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> students <span class="hljs-keyword">where</span> s_ID <span class="hljs-operator">=</span> <span class="hljs-number">01</span><br><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> students<br></code></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="7-修改表结构"><a href="#7-修改表结构" class="headerlink" title="7. 修改表结构"></a>7. 修改表结构</h3><blockquote>
+<p><strong>增加列：</strong> alter table 表名 add  字段名 数据类型<br><strong>删除列：</strong> alter table 表名 drop column 字段名<br><strong>修改字段类型：</strong> alter table 表名 alter column 字段名 新类型</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span>增加列<br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> students <span class="hljs-keyword">add</span> s_age <span class="hljs-type">int</span><br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>删除列<br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> students <span class="hljs-keyword">drop</span> <span class="hljs-keyword">column</span> s_age<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>修改字段类型<br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> students <span class="hljs-keyword">alter</span> <span class="hljs-keyword">column</span> s_age <span class="hljs-type">int</span><br></code></pre></td></tr></table></figure>
+<h3 id="8-更改数据"><a href="#8-更改数据" class="headerlink" title="8. 更改数据"></a>8. 更改数据</h3><blockquote>
+<p>update 表名 set 列名 &#x3D; 列值, 列名 &#x3D; 列值,.. where 条件, &#x3D;&#x3D;不写条件则修改全表&#x3D;&#x3D;<br><code>update students set s_age = 20</code></p>
+</blockquote>
+<h3 id="9-查询"><a href="#9-查询" class="headerlink" title="9. 查询"></a>9. 查询</h3><ul>
+<li><h4 id="查全表"><a href="#查全表" class="headerlink" title="查全表"></a>查全表</h4></li>
+</ul>
+<blockquote>
+<p>select * from 表名</p>
+</blockquote>
+<ul>
+<li><h4 id="查部分列"><a href="#查部分列" class="headerlink" title="查部分列"></a>查部分列</h4></li>
+</ul>
+<blockquote>
+<p>select 列名1, 列名2 from 表名</p>
+</blockquote>
+<ul>
+<li><h4 id="列取别名"><a href="#列取别名" class="headerlink" title="列取别名"></a>列取别名</h4></li>
+</ul>
+<blockquote>
+<p>select 列名1 as 新列名1, 列名2 新列名2 from 表名<br><strong>注</strong>：as可以省略</p>
+</blockquote>
+<ul>
+<li><h4 id="列名加运算符"><a href="#列名加运算符" class="headerlink" title="列名加运算符"></a>列名加运算符</h4></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询学生姓名以及学生两年前的年龄<br><span class="hljs-keyword">select</span> s_name <span class="hljs-keyword">as</span> 姓名, s_age<span class="hljs-number">-2</span> 两年前的年龄 <span class="hljs-keyword">from</span> students<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询学生姓名、两年前的年龄<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>isnull(expr1,expr2)用于避免<span class="hljs-keyword">null</span>值参与计算  MySQL用ifnull()<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>如果expr1是<span class="hljs-keyword">null</span>,函数的结果就是expr2;否则就是expr1<br><span class="hljs-keyword">select</span> s_name, isnull(s_age, <span class="hljs-number">20</span>)<span class="hljs-number">-2</span> <span class="hljs-keyword">from</span> students<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>可用<span class="hljs-operator">+</span>做字符串或列与列的拼接,列得是字符串型 <br><span class="hljs-keyword">select</span> <span class="hljs-string">&#x27;姓名:&#x27;</span><span class="hljs-operator">+</span>s_name<span class="hljs-operator">+</span>s_sex <span class="hljs-keyword">from</span> students<br></code></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="distinct关键字"><a href="#distinct关键字" class="headerlink" title="distinct关键字"></a>distinct关键字</h4></li>
+</ul>
+<blockquote>
+<p>去掉重复的行，所查字段都一样才会被去掉<br><code>select distinct class_ID, s_name from students</code></p>
+</blockquote>
+<ul>
+<li><h4 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h4></li>
+</ul>
+<blockquote>
+<ol>
+<li>比较运算：&gt;、&lt; 、&gt;&#x3D;、&lt;&#x3D;、&#x3D;、&#x3D; 、!&#x3D;或&lt;&gt;<br><strong>注</strong>： null值不能作比较<br>NULL值与任何其它值的比较（即使是NULL）永远不会为“真”</li>
+<li>between … and … 数值范围条件<br><strong>注</strong>：包括边界</li>
+<li>in关键字，集合列表范围查询<br><strong>注</strong>：not in集合里不能包含null值，因为要判断和集合里的所有元素都不等才会返回true，包含null值无法比较，任何与之比较的元素都会返回false</li>
+</ol>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询tom的全部信息<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> students <span class="hljs-keyword">where</span> s_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;tom&#x27;</span><br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询不属于<span class="hljs-number">1</span>班的学生<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> students <span class="hljs-keyword">where</span> class_ID <span class="hljs-operator">!=</span> <span class="hljs-number">1</span><br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询年龄在<span class="hljs-number">21</span><span class="hljs-number">-29</span>之间的学生<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> students <span class="hljs-keyword">where</span> s_age <span class="hljs-keyword">between</span> <span class="hljs-number">21</span> <span class="hljs-keyword">and</span> <span class="hljs-number">29</span><br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查Jack、linda、tom的信息<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> students <span class="hljs-keyword">where</span> s_name <span class="hljs-keyword">in</span> (<span class="hljs-string">&#x27;jack&#x27;</span>,<span class="hljs-string">&#x27;linda&#x27;</span>,<span class="hljs-string">&#x27;tom&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<blockquote>
+<ol start="4">
+<li>逻辑运算：and、or、not<br><strong>注</strong>：and的优先级高于or，也可以使用小括号强制优先级</li>
+</ol>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询属于<span class="hljs-number">1</span>班且学号小于<span class="hljs-number">5</span>的学生<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> students <span class="hljs-keyword">where</span> class_ID <span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> s_ID <span class="hljs-operator">&lt;</span> <span class="hljs-number">5</span><br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询除tom之外的学生信息<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> students <span class="hljs-keyword">where</span> <span class="hljs-keyword">not</span> s_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;tom&#x27;</span><br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询姓名为tom，或学号为<span class="hljs-number">2</span>的学生<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> students <span class="hljs-keyword">where</span> s_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;tom&#x27;</span> <span class="hljs-keyword">or</span> s_ID <span class="hljs-operator">=</span> <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<ol start="5">
+<li>判空： is null、is not null</li>
+</ol>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询电话号码为空的学生<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> students <span class="hljs-keyword">where</span> s_phoneNumber <span class="hljs-keyword">is</span> <span class="hljs-keyword">null</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<ol start="5">
+<li>模糊查询：like + %或_<br> %表示0个或多个字符，_表示一个字符 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"> <span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询姓名以l开头的学生<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> students <span class="hljs-keyword">where</span> s_name <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;l%&#x27;</span><br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询名字里含m的学生<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> students <span class="hljs-keyword">where</span> s_name <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%m%&#x27;</span><br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询名字第二个字符为o的<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> students <span class="hljs-keyword">where</span> s_name <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;_o%&#x27;</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<ul>
+<li><h4 id="order-by-对结果集排序"><a href="#order-by-对结果集排序" class="headerlink" title="order by 对结果集排序"></a>order by 对结果集排序</h4></li>
+</ul>
+<blockquote>
+<p>默认升序asc,降序为desc<br> <strong>注</strong>：升序null值会排在最前面<br> select 列1， 列2 from 表名 order by 列名1<br> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"> <span class="hljs-operator">/</span><span class="hljs-operator">/</span>先按年龄升序，年龄一样则按学号升序<br><span class="hljs-keyword">select</span> s_name, s_age, s_ID <span class="hljs-keyword">from</span> students <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> s_age, s_ID <br><br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>先按年龄降序，年龄一样按学号升序<br> <span class="hljs-keyword">select</span> s_name, s_age, s_ID <span class="hljs-keyword">from</span> students <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> s_age <span class="hljs-keyword">desc</span>, s_ID<br></code></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li><h4 id="top关键字：限定查询记录条数"><a href="#top关键字：限定查询记录条数" class="headerlink" title="top关键字：限定查询记录条数"></a>top关键字：限定查询记录条数</h4></li>
+</ul>
+<p>  <strong>注</strong>：mysql用limit(a, b),表示从a开始条记录，a从0开始计数。limit(n)表示返回前n条<br>  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询前三名学生<br><span class="hljs-keyword">select</span> top <span class="hljs-number">3</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> students<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查第n<span class="hljs-operator">-</span>m条记录<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-keyword">select</span> top m<span class="hljs-operator">-</span>n<span class="hljs-operator">+</span><span class="hljs-number">1</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> 表名 <span class="hljs-keyword">where</span> 列名 <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> (<span class="hljs-keyword">select</span> top n<span class="hljs-number">-1</span> 列名 <span class="hljs-keyword">from</span> 表名)<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询<span class="hljs-number">2</span><span class="hljs-number">-7</span>名学生<br><span class="hljs-keyword">select</span> top <span class="hljs-number">6</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> students <br><span class="hljs-keyword">where</span> s_ID <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> (<span class="hljs-keyword">select</span> top <span class="hljs-number">1</span> s_ID <span class="hljs-keyword">from</span> students)<br></code></pre></td></tr></table></figure></p>
+<ul>
+<li><h4 id="聚合函数：max、min、count、sum、avg"><a href="#聚合函数：max、min、count、sum、avg" class="headerlink" title="聚合函数：max、min、count、sum、avg"></a>聚合函数：max、min、count、sum、avg</h4></li>
+</ul>
+<blockquote>
+<p><strong>注</strong>：count(),只要括号里的不为null，都加1<br>  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"> <span class="hljs-operator">/</span><span class="hljs-operator">/</span>查年龄总值、最大值、电话不为空记录数<br><span class="hljs-keyword">select</span> <span class="hljs-built_in">sum</span>(s_age) sum, <span class="hljs-built_in">max</span>(s_age) max, <span class="hljs-built_in">avg</span>(s_age) avg, <span class="hljs-built_in">count</span>(s_phoneNumber) count <span class="hljs-keyword">from</span> students<br></code></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li><h4 id="分组查询：group-by"><a href="#分组查询：group-by" class="headerlink" title="分组查询：group by"></a>分组查询：group by</h4></li>
+</ul>
+<blockquote>
+<p><strong>注</strong>：查询的列要在group by子句中；sql sever 不能取别名， MySQL可以<br>  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span>按年龄分组<br><span class="hljs-keyword">select</span> s_age <span class="hljs-keyword">from</span> students <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> s_age<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>计算每组记录数<br><span class="hljs-keyword">select</span> s_age, <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">from</span> students <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> s_age<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>按年龄和性别分组<br><span class="hljs-keyword">select</span> s_age, s_sex <span class="hljs-keyword">from</span> students <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> s_age, s_sex<br></code></pre></td></tr></table></figure><br>  <strong>注</strong>：在where语句中不能使用聚合函数，可以在having语句中使用聚合函数</p>
+</blockquote>
+<p> where是对每条表记录的条件限定，having是对结果集记录的条件限定<br> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> s_sex, <span class="hljs-built_in">avg</span>(s_age) <span class="hljs-keyword">from</span> students <br><span class="hljs-keyword">group</span> bys_sex <br><span class="hljs-keyword">having</span> <span class="hljs-built_in">avg</span>(s_age) <span class="hljs-operator">&gt;</span> <span class="hljs-number">25</span><br><br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>先筛出年龄<span class="hljs-operator">&gt;</span><span class="hljs-number">25</span>的，再按年龄分组，在筛出分组后年龄大于<span class="hljs-number">29</span>的<br> <span class="hljs-keyword">select</span> s_age <span class="hljs-keyword">from</span> students <br> <span class="hljs-keyword">where</span> s_age <span class="hljs-operator">&gt;</span> <span class="hljs-number">25</span> <br> <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> s_age <br> <span class="hljs-keyword">having</span> s_age <span class="hljs-operator">&gt;</span> <span class="hljs-number">29</span><br></code></pre></td></tr></table></figure></p>
+<ul>
+<li><h4 id="多表连接"><a href="#多表连接" class="headerlink" title="多表连接"></a>多表连接</h4></li>
+</ul>
+<blockquote>
+<ol>
+<li>等值连接 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查学生信息和专业<br><span class="hljs-keyword">select</span> student.<span class="hljs-operator">*</span>, class.Speciality <br><span class="hljs-keyword">from</span> student, class <br><span class="hljs-keyword">where</span> student.clno <span class="hljs-operator">=</span> class.clno<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>取别名<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> student s, class c <span class="hljs-keyword">where</span> s.clno <span class="hljs-operator">=</span> c.clno<br></code></pre></td></tr></table></figure></li>
+<li>内连接<br>  select 列1，列2 from 表1<br>inner join 表2<br>on 等值条件  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> s.<span class="hljs-operator">*</span>, c.Speciality <span class="hljs-keyword">from</span> student s <br><span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> class c <span class="hljs-keyword">on</span> s.clno <span class="hljs-operator">=</span> c.clno <br><span class="hljs-keyword">where</span> sage <span class="hljs-operator">&gt;</span> <span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>
+  <strong>注</strong>：内连接的结果和等值连接的结果是相同的，只是写法不同<br>  只会显示符合连接条件的数据，不会显示所有的数据</li>
+<li>外连接：<br>分为左外连接、右外连接，左外连接会列出左表全部记录，右表没有符合的记录则用null值填充；右外连接会列出右表全部记录，左表没有符合的记录则用null值填充  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> student s <span class="hljs-keyword">right</span> <span class="hljs-keyword">outer</span> <span class="hljs-keyword">join</span> class c <span class="hljs-keyword">on</span> c.clno <span class="hljs-operator">=</span> s.clno<br></code></pre></td></tr></table></figure></li>
+<li>全连接：表1 full join 表2 on 连接条件<br>   <strong>注</strong>：mysql没有full join，可用左连接union右连接代替</li>
+</ol>
+</blockquote>
+<ul>
+<li><h4 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h4></li>
+</ul>
+<blockquote>
+<ul>
+<li>相关子查询：子查询中需要用到父查询中的值<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询某同学选修课程成绩高于他选修的所有课程平均成绩的课程号<br><span class="hljs-keyword">select</span> cno <span class="hljs-keyword">from</span> sc x <span class="hljs-keyword">where</span> grade <span class="hljs-operator">&gt;</span> <br>(<span class="hljs-keyword">select</span> <span class="hljs-built_in">avg</span>(grad) <span class="hljs-keyword">from</span> sc y <span class="hljs-keyword">where</span> x.sno <span class="hljs-operator">=</span> y.sno)<br></code></pre></td></tr></table></figure>
+工作原理：扫描父查询表（如 SC 表）中的每一条记录，然后将当前这条记录中的，在子查询中会用到的值代入到子查询中去，然后执行子查询并得到结果（可以看成是返回值），然后再将这个结果代入到父查询的条件中，判断父查询的条件表达式的值是否为 True，若为 True，则将当前 SC 表中的这条记录放到结果集中去。若为 False 则不放。</li>
+<li>非相关子查询：脱离父查询单独执行</li>
+<li>子查询的结果只有一行就是<strong>单行子查询</strong>；反之就是<strong>多行子查询</strong>。单行子查询只能进行比较。多行子查询可用in、any、all、exists、not exists<br><strong>exist原理</strong>：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/20005249">https://zhuanlan.zhihu.com/p/20005249</a></li>
+</ul>
+</blockquote>
+<ul>
+<li><h4 id="取交集：union、union-all"><a href="#取交集：union、union-all" class="headerlink" title="取交集：union、union all"></a>取交集：union、union all</h4><blockquote>
+<p>union会排除重复行，并排序，union all不会<br>union all执行效率更高</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs sql">  <span class="hljs-operator">/</span><span class="hljs-operator">/</span>找出id为奇数且name不以m开头的员工bonus为salary，否则为<span class="hljs-number">0</span>，并排序<br>  <span class="hljs-keyword">select</span> employee_id, salary bonus <span class="hljs-keyword">from</span> Employees  <br>  <span class="hljs-keyword">where</span> employee_id <span class="hljs-operator">%</span> <span class="hljs-number">2</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> name <span class="hljs-keyword">not</span> <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;m%&#x27;</span>  <br>  <span class="hljs-keyword">union</span> <span class="hljs-keyword">all</span>  <br>  <span class="hljs-keyword">select</span> employee_id, salary<span class="hljs-operator">*</span><span class="hljs-number">0</span> bonus <span class="hljs-keyword">from</span> Employees  <br>  <span class="hljs-keyword">where</span> employee_id <span class="hljs-operator">%</span> <span class="hljs-number">2</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> name <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;m%&#x27;</span><br>  <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> employee_id<br>  ```  <br># 三、例句<br><span class="hljs-number">1.</span> <span class="hljs-keyword">case</span>用法<br>``` <span class="hljs-keyword">sql</span><br><span class="hljs-keyword">select</span> id,<br>    <span class="hljs-keyword">case</span> <span class="hljs-keyword">when</span> p_id <span class="hljs-keyword">is</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">then</span> <span class="hljs-string">&#x27;Root&#x27;</span><br>        <span class="hljs-keyword">when</span> id <span class="hljs-keyword">in</span> (<span class="hljs-keyword">select</span> p_id <span class="hljs-keyword">from</span> tree) <span class="hljs-keyword">then</span> <span class="hljs-string">&#x27;Inner&#x27;</span><br>        <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;Leaf&#x27;</span><br>    <span class="hljs-keyword">end</span> <span class="hljs-keyword">as</span> Type<br><span class="hljs-keyword">from</span> tree<br></code></pre></td></tr></table></figure></li>
+</ul>
+<ol start="2">
+<li><strong>mysql</strong> datadiff(date1, date2)函数<blockquote>
+<p>函数返回date1 -date2的计算结果;如果参数传递的是日期时间值，DATEDIFF函数仅将日期部分用于计算，并&#x3D;&#x3D;忽略时间部分&#x3D;&#x3D;</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> activity_date <span class="hljs-keyword">day</span>, <span class="hljs-built_in">COUNT</span>(<span class="hljs-keyword">DISTINCT</span>  user_id) active_users<br><span class="hljs-keyword">FROM</span> Activity<br><span class="hljs-keyword">WHERE</span> DATEDIFF(&quot;2019-07-27&quot;, activity_date) <span class="hljs-operator">&lt;</span> <span class="hljs-number">30</span> <span class="hljs-keyword">AND</span> DATEDIFF(&quot;2019-07-27&quot;, activity_date) <span class="hljs-operator">&gt;=</span> <span class="hljs-number">0</span><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> activity_date;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>TIMESTAMPDIFF(DAY,start,end):返回两个日期指定单位的时间差(指定单位可以是年，季度，月，星期，天数，小时，分钟，秒等等)</p>
+</blockquote>
+</li>
+<li>if(条件, 为true时&#x3D;, 为false时&#x3D;)<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span>性别转换<br><span class="hljs-keyword">update</span> Salary <span class="hljs-keyword">set</span> sex <span class="hljs-operator">=</span> if(sex <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;m&#x27;</span>, <span class="hljs-string">&#x27;f&#x27;</span>, <span class="hljs-string">&#x27;m&#x27;</span>)<br></code></pre></td></tr></table></figure></li>
+<li><strong>注</strong>：子查询要命名，不然会报错。<br>  <strong>注</strong>：不能在同一个 sql 语句中，先 select 同一个表的某些值，然后再 update 这个表。<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">from</span> Person <span class="hljs-keyword">Where</span> Id <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> <br>(<span class="hljs-keyword">select</span> Id <span class="hljs-keyword">from</span> <br>( <span class="hljs-keyword">Select</span> <span class="hljs-built_in">MIN</span>(Id) <span class="hljs-keyword">as</span> Id <span class="hljs-keyword">From</span> Person <span class="hljs-keyword">Group</span> <span class="hljs-keyword">by</span> Email ) t)<br></code></pre></td></tr></table></figure></li>
+<li>concat(a, b)拼接a,b ;left(name,count)返回name前count字符。<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> user_id, <br>concat(<span class="hljs-built_in">upper</span>(<span class="hljs-keyword">left</span>(name, <span class="hljs-number">1</span>)), <span class="hljs-built_in">lower</span>(substr(name, <span class="hljs-number">2</span>))) name<br><span class="hljs-keyword">from</span> Users <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> user_id<br></code></pre></td></tr></table></figure></li>
+<li>groupconcat()：将分组后每组的某一字段拼接起来。默认用,分割<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> sell_date,<span class="hljs-built_in">count</span>(<span class="hljs-keyword">distinct</span> product) num_sold,<br>group_concat(<span class="hljs-keyword">distinct</span> product separator <span class="hljs-string">&#x27;,&#x27;</span>) products<br><span class="hljs-keyword">from</span> activities<br><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> sell_date<br><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> sell_date<br></code></pre></td></tr></table></figure></li>
+<li>with tableA as（select语句）：相当于建立了一个临时表tableA<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">with</span> tmp <span class="hljs-keyword">as</span><br>(<span class="hljs-keyword">select</span> employee_id <span class="hljs-keyword">from</span> Employees<br><span class="hljs-keyword">union</span> <span class="hljs-keyword">all</span><br><span class="hljs-keyword">select</span> employee_id <span class="hljs-keyword">from</span> Salaries)<br><span class="hljs-keyword">select</span> employee_id <span class="hljs-keyword">from</span> tmp <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> <span class="hljs-number">1</span> <span class="hljs-keyword">having</span> <span class="hljs-built_in">count</span>(<span class="hljs-number">1</span>) <span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-number">1</span> <br></code></pre></td></tr></table></figure></li>
+<li><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span>加引号表示将固定值store1放到列store<br><span class="hljs-keyword">select</span> product_id,&quot;store1&quot; store, store1 price <span class="hljs-keyword">from</span> Products <span class="hljs-keyword">where</span> store1 <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="四、"><a href="#四、" class="headerlink" title="四、"></a>四、</h1><ol>
+<li>e-r图与关系模式转换<ul>
+<li>1对1关系：任一方的主键加入到另一方中。</li>
+<li>1对n关系：1方的主键加入到n方，并把联系上的属性也加入到n方。</li>
+<li>m对n关系：联系自成一张表，并把双方的主键加进来当联合主键。</li>
+</ul>
+</li>
+<li>数据库设计规范——三大范式</li>
+</ol>
+<ul>
+<li>第一范式：保持每列的原子性，即每个字段都是不可拆分的原子值。</li>
+<li>第二范式：确保每列都和主键相关，而不能和主键的某一部分相关（针对联合主键）。为避免数据冗余。<br>  可能存在的问题：数据冗余、删除异常、插入异常、更新异常<br>  例如：订单信息表中主键为订单编号和商品编号，属性包括，商品订购数量，商品价格，商品型号等。因为存在不同订单订购同一商品，因此同一个商品的信息可能被记录多次（数据冗余）；删除一条记录可能会删除一类商品的信息（删除异常）；插入一个商品信息必须要有订单号（插入异常）；更新一类商品信息要操作好几行（更新异常）。<br>  它不满足第二范式，商品价格、商品型号只与商品有关，应该建一张商品表，订单信息表只保留商品编号、订购数量等。</li>
+<li>第三范式：必须满足第二范式。非主属性必须直接依赖于主键，不能传递依赖于非主属性。</li>
+</ul>
+<ol start="3">
+<li>函数依赖<ul>
+<li>部分函数依赖：（A,B）决定C,A也能决定C或B也能决定C，则C部分依赖于（A,B）</li>
+<li>完全函数依赖：（A,B）决定C,A不能决定C,B不能决定C，则C完全函数依赖于（A,B）</li>
+<li>传递依赖：A-&gt;B(B!-&gt;A),B-&gt;C，则C传递依赖于x<br>例：学号，宿舍，住宿费</li>
+</ul>
+</li>
+<li><ul>
+<li>mysql的执行过程<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/338092a0a8c6">https://www.jianshu.com/p/338092a0a8c6</a></li>
+<li>索引<a target="_blank" rel="noopener" href="https://bbs.huaweicloud.com/blogs/333163">https://bbs.huaweicloud.com/blogs/333163</a></li>
+</ul>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/">#Linux</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SQL语法总结</div>
+      <div>http://beidaoxiangcai.github.io/2021/09/14/sql学习/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Jianing Chen</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年9月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/15/%E9%AB%98%E9%A2%91VIM%E5%91%BD%E4%BB%A4/" title="高频VIM命令">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">高频VIM命令</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/14/shell%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" title="shell语法总结">
+                        <span class="hidden-mobile">shell语法总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'http://beidaoxiangcai.github.io/2021/09/14/sql%E5%AD%A6%E4%B9%A0/';
+          this.page.identifier = '/2021/09/14/sql%E5%AD%A6%E4%B9%A0/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -16,26 +16,26 @@
   <meta name="author" content="Jianing Chen">
   <meta name="keywords" content="C++">
   
-    <meta name="description" content="Shell语法运行 .&#x2F;aa.sh 打开一个subshell去读取、执行aa.sh，而aa.sh需要有执行权限 依赖首行明确解释器类型，否则就不在subshell中执行 通知系统在当前目录找aa.sh,而直接执行aa.sh&#96;，linux 系统将在 PATH里的目录里找aa.sh   sh&#x2F;bash aa.sh   打开一个subshell运行解释器去读取、执行aa.sh，文件名作为参数，无">
+    <meta name="description" content="参考：https:&#x2F;&#x2F;blog.csdn.net&#x2F;comedate&#x2F;article&#x2F;details&#x2F;108544656https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_37431083&#x2F;article&#x2F;details&#x2F;125885308 一、CMake介绍 makefile: 源文件一个一个编译太麻烦，Makefile通过编写规则文件指定工程中哪些文件需要先编译，哪些">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shell语法总结">
-<meta property="og:url" content="http://beidaoxiangcai.github.io/2021/03/14/shell%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="CMake常用操作总结">
+<meta property="og:url" content="http://beidaoxiangcai.github.io/2022/03/08/cmake_note/index.html">
 <meta property="og:site_name" content="佳柠的博客">
-<meta property="og:description" content="Shell语法运行 .&#x2F;aa.sh 打开一个subshell去读取、执行aa.sh，而aa.sh需要有执行权限 依赖首行明确解释器类型，否则就不在subshell中执行 通知系统在当前目录找aa.sh,而直接执行aa.sh&#96;，linux 系统将在 PATH里的目录里找aa.sh   sh&#x2F;bash aa.sh   打开一个subshell运行解释器去读取、执行aa.sh，文件名作为参数，无">
+<meta property="og:description" content="参考：https:&#x2F;&#x2F;blog.csdn.net&#x2F;comedate&#x2F;article&#x2F;details&#x2F;108544656https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_37431083&#x2F;article&#x2F;details&#x2F;125885308 一、CMake介绍 makefile: 源文件一个一个编译太麻烦，Makefile通过编写规则文件指定工程中哪些文件需要先编译，哪些">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://beidaoxiangcai.github.io/img/page/shell.png">
-<meta property="article:published_time" content="2021-03-14T20:35:11.000Z">
-<meta property="article:modified_time" content="2021-03-14T13:39:18.000Z">
+<meta property="og:image" content="http://beidaoxiangcai.github.io/img/page/cmake.png">
+<meta property="article:published_time" content="2022-03-08T09:31:27.000Z">
+<meta property="article:modified_time" content="2023-03-04T14:31:19.116Z">
 <meta property="article:author" content="Jianing Chen">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="cmake">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://beidaoxiangcai.github.io/img/page/shell.png">
+<meta name="twitter:image" content="http://beidaoxiangcai.github.io/img/page/cmake.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>shell语法总结 - 佳柠的博客</title>
+  <title>CMake常用操作总结 - 佳柠的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -216,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="shell语法总结"></span>
+            <span id="subtitle" data-typed-text="CMake常用操作总结"></span>
           
         </div>
 
@@ -227,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-03-14 21:35" pubdate>
-          2021年3月14日 晚上
+        <time datetime="2022-03-08 10:31" pubdate>
+          2022年3月8日 上午
         </time>
       </span>
     
@@ -240,7 +240,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.4k 字
+          3.6k 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
           <!-- compatible with older versions-->
-          12 分钟
+          31 分钟
         
       </span>
     
@@ -290,62 +290,124 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">shell语法总结</h1>
+            <h1 style="display: none">CMake常用操作总结</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="Shell语法"><a href="#Shell语法" class="headerlink" title="Shell语法"></a>Shell语法</h2><h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><ul>
-<li><code>./aa.sh</code><ul>
-<li>打开一个<strong>subshell</strong>去读取、执行aa.sh，而aa.sh<strong>需要有执行权限</strong></li>
-<li>依赖首行明确解释器类型，否则就不在subshell中执行</li>
-<li>通知系统在当前目录找aa.sh,而直接执行aa.sh&#96;，linux 系统将在 PATH里的目录里找aa.sh</li>
-</ul>
+                <p>参考：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/comedate/article/details/108544656">https://blog.csdn.net/comedate/article/details/108544656</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37431083/article/details/125885308">https://blog.csdn.net/qq_37431083&#x2F;article&#x2F;details&#x2F;125885308</a></p>
+<h1 id="一、CMake介绍"><a href="#一、CMake介绍" class="headerlink" title="一、CMake介绍"></a>一、CMake介绍</h1><ul>
+<li><p>makefile: 源文件一个一个编译太麻烦，Makefile通过编写规则文件指定工程中哪些文件需要先编译，哪些需要后编译进行批处理编译；可以指定只编译新写出的代码，而不用全部重新编译，提高了开发效率。 </p>
 </li>
-<li><code>sh/bash aa.sh</code>  <ul>
-<li>打开一个<strong>subshell</strong>运行解释器去读取、执行aa.sh，文件名作为参数，<strong>无需执行权限</strong></li>
-<li>无需在首行写类似<code>#!/bin/bash*</code>来明确解释器</li>
-</ul>
-</li>
-<li><code>source aa.sh</code><ul>
-<li><strong>当前shell内</strong>读取、执行aa.sh，会保留和改变当前shell中的变量，<strong>无需执行权限</strong></li>
-<li>soure可以简化为点号”.”，推荐点号</li>
-</ul>
+<li><p>CMake：是一个开源、跨平台的编译、测试和打包工具，它使用比较简单的语言描述编译、安装的过程，<strong>自动输出</strong>Makefile或者project文件。</p>
+<p>为什么不自己写Makefile：对于大型工程，Makefile很复杂，cmake可自动生成Makefile。</p>
+<p>跨平台编译，也叫交叉编译，可在win平台上开发，编译成linux平台可执行的文件。</p>
+<p>Project文件（即Object文件）: 由源文件通过编译过程产生，是一种中间代码文件，其文件格式在Windows下为 .obj 文件，UNIX下是 .o 文件。大量的Object文件组合在一起（该过程称为”链接”）组成了可执行文件。</p>
 </li>
 </ul>
-<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><ul>
-<li><p>$aa与${aa}没有区别，但是{}可以用来明确变量边界，同时支持拼接</p>
-</li>
-<li><p><code>readonly aa</code> 设置变量aa为只读</p>
-</li>
-<li><p><code>unset aa</code> 删除变量aa, 不能删只读变量</p>
-</li>
-<li><p>shell变量</p>
+<h1 id="二、CMakeLists-txt语法"><a href="#二、CMakeLists-txt语法" class="headerlink" title="二、CMakeLists.txt语法"></a>二、CMakeLists.txt语法</h1><h3 id="内部变量"><a href="#内部变量" class="headerlink" title="内部变量"></a>内部变量</h3><table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PROJECT_NAME</td>
+<td>project名称，即使用PROJECT命令设置的名称</td>
+</tr>
+<tr>
+<td>CMAKE_CXX_COMPILER</td>
+<td>指定C++编译器</td>
+</tr>
+<tr>
+<td>CMAKE_CXX_FLAGS</td>
+<td>编译C++文件时的选项</td>
+</tr>
+<tr>
+<td>CMAKE_CXX_STANDARD</td>
+<td>C++标准</td>
+</tr>
+<tr>
+<td>add_definitions</td>
+<td>添加编译选项</td>
+</tr>
+<tr>
+<td>EXECUTABLE_OUTPUT_PATH</td>
+<td>可执行文件的存放路径</td>
+</tr>
+<tr>
+<td>LIBRARY_OUTPUT_PATH</td>
+<td>库文件的存放路径</td>
+</tr>
+<tr>
+<td>CMAKE_BUILD_TYPE</td>
+<td>build 类型(Debug, Release, …)，CMAKE_BUILD_TYPE&#x3D;Debug</td>
+</tr>
+<tr>
+<td>BUILD_SHARED_LIBS</td>
+<td>指定编译成静态库还是动态库</td>
+</tr>
+</tbody></table>
+<ol>
+<li>设置最低Cmake版本要求<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.5</span>)  <br></code></pre></td></tr></table></figure></li>
+<li><strong>project()</strong></li>
+</ol>
 <ul>
-<li>&#96;&#96;&#96;<br>$$ &#x2F;&#x2F; shell本身PID<br>$* $@  参数列表（不包括脚本文件名）<br>$# 参数列表中参数个数<br>$0 脚本文件名<br>$n 第n个参数<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs clean"><br>#### 字符串<br><br>+ 单引号里的任何字符都会原样输出，因而变量是无效的<br>+ 字符串长度 `$&#123;#string&#125;`<br>+ 截取子串 `$&#123;string:<span class="hljs-number">1</span>:<span class="hljs-number">4</span>&#125;` 截取string位置<span class="hljs-number">1</span>开始的<span class="hljs-number">4</span>个字符<br><br>#### 数组<br><br>```shell<br>array_name=(value0 value1 value2 value3) #不限定长度，下标从<span class="hljs-number">0</span>开始，空格分割<br>array_name[n]=valuen <br>$&#123;array_name[@]&#125; # 使用 @ 符号可以获取数组中的所有元素<br>length=$&#123;#array_name[@]&#125; # 取得数组元素的个数<br>lengthn=$&#123;#array_name[n]&#125; # 取得数组单个元素的长度<br></code></pre></td></tr></table></figure></li>
+<li>PROJECT_NAME: 必选——用来设置工程名，设置后，会把设置的值存储在CMAKE_PROJECT_NAME变量中</li>
+<li>VERSION：可选，工程版本号，有主版本号、次版本号、补丁版本号</li>
+<li>DESCRIPTION：工程简单的的描述</li>
+<li>HOMEPAGE_URL：工程主页url</li>
+<li>LANGUAGES：工程使用的语言</li>
 </ul>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-comment"># 指定项目名和编程语言,默认为C和C++（cxx），LANGUAGE关键字可省略</span><br><span class="hljs-keyword">project</span>(cmaketest cxx)<br><span class="hljs-comment"># 跟在其他关键字后不可省略</span><br><span class="hljs-keyword">project</span> (camketest VERSION <span class="hljs-number">10.2</span>.<span class="hljs-number">1.3</span> LANGUAGES “CXX”)<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>message 打印消息<br><code>message([FATAL_ERROR] “message to display” …)</code></li>
+<li>set 可设置普通变量、环境变量、缓存条目<br> <code>set (normal_var a) #普通变量</code></li>
+<li>生成可执行程序<br>#同一个文件夹下多个源文件的编译<br><code>add_executable (helloDemo demo.cxx demo_b.cxx)</code>     </li>
+<li>指定头文件搜索路径<br><code>include_directories ($&#123;HELLO_SOURCE_DIR&#125;/Hello)</code></li>
+<li>查找当前目录下所有源文件名，并将其存储到	DIR_CURR中<br> <code>aux_source_directory(. DIR_CURR)</code></li>
+<li>添加链接库，指明可执行文件helloDemo需要连接一个名为 function 的链接库<br><code>target_link_libraries(helloDemo function)</code></li>
+</ol>
+<h1 id="三、cmake命令"><a href="#三、cmake命令" class="headerlink" title="三、cmake命令"></a>三、cmake命令</h1><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-S</td>
+<td>指定源文件根目录，必须包含一个CMakeLists.txt文件</td>
+</tr>
+<tr>
+<td>-B</td>
+<td>指定构建目录，构建生成的中间文件和目标文件的生成路径</td>
+</tr>
+<tr>
+<td>-D</td>
+<td>使用变量，格式为-D &lt;var&gt;&#x3D;&lt;value&gt;，-D后面的空格<strong>可省略</strong>,变量在CMakeLists.txt中定义</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">指明使用当前目录作为源文件目录，其中包含CMakeLists.txt文件；</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">使用build目录作为构建目录；</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">设定变量CMAKE_BUILD_TYPE的值为Debug，变量AUTHOR的值为RealCoolEngineer</span><br>cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DAUTHOR=RealCoolEngineer<br></code></pre></td></tr></table></figure>
+<h1 id="四、CMake使用"><a href="#四、CMake使用" class="headerlink" title="四、CMake使用"></a>四、CMake使用</h1><ol>
+<li>生成Makefile文件<blockquote>
+<p>cmake `CMakeLists.txt所在路径&#96;  &#x2F;&#x2F;会在当前文件夹生成build文件    </p>
+</blockquote>
 </li>
-</ul>
-<h4 id="多行注释"><a href="#多行注释" class="headerlink" title="多行注释"></a>多行注释</h4><ul>
-<li>&#96;&#96;&#96;shell<br>: &lt;&lt;’COMMENT’<br>something<br>COMMENT<br>或者<br>: &lt;&lt;!<br>something<br>!<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs awk"><br><span class="hljs-comment">#### Shell编码</span><br><br><span class="hljs-comment">#### cd安全</span><br><br>+ cd可能由于错误路径、无权限等问题而失败，一旦失败后续操作将在错误目录上继续执行，引发误操作。<br>+ 通过添加错误判断并<span class="hljs-keyword">exit</span>方式避免错误操作。<br><br>```shell<br>cd foo || <span class="hljs-keyword">exit</span> <span class="hljs-regexp">//</span> <span class="hljs-keyword">exit</span>返回cd错误码<br>cd foo || &#123; echo <span class="hljs-string">&quot;Failure&quot;</span>; <span class="hljs-keyword">exit</span> <span class="hljs-number">1</span>; &#125;<br></code></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h4><p>进入当前脚本路径</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$</span><span class="language-bash">(<span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(dirname $0)</span>&quot;</span>;<span class="hljs-built_in">pwd</span>)</span><br></code></pre></td></tr></table></figure>
-
-<p>进入当前函数执行路径，如脚本A调用脚本B，在B中执行则得到B的路径</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$</span><span class="language-bash">( <span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;<span class="hljs-subst">$( dirname <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;BASH_SOURCE[0]&#125;</span>&quot;</span> )</span>&quot;</span> &amp;&amp; <span class="hljs-built_in">pwd</span> )</span><br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="静波代码检视"><a href="#静波代码检视" class="headerlink" title="静波代码检视"></a>静波代码检视</h2><h4 id="离线检测"><a href="#离线检测" class="headerlink" title="离线检测"></a>离线检测</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">apt-get install shellcheck<br>shellcheck file.sh<br></code></pre></td></tr></table></figure>
-
-<h4 id="在线检测"><a href="#在线检测" class="headerlink" title="在线检测"></a>在线检测</h4><ul>
-<li><p>在线检测<a target="_blank" rel="noopener" href="https://www.shellcheck.net/%EF%BC%8C%E8%B4%B4%E5%85%A5%E4%BB%A3%E7%A0%81%EF%BC%8C%E8%87%AA%E5%8A%A8%E6%A3%80%E6%B5%8B">https://www.shellcheck.net/，贴入代码，自动检测</a></p>
+<li>编译:进入build文件，里面会有Makefile文件，执行make，即会生成可执行文件<blockquote>
+<p>make</p>
+</blockquote>
 </li>
-<li><p>注意加上 <code>#!/bin/bash</code>，否则报错</p>
-</li>
-</ul>
-<p><img src="/img/shell-check.png" srcset="/img/loading.gif" lazyload alt="shellcheck示意"></p>
+<li>直接输入可执行文件文件名，执行。</li>
+</ol>
+<h1 id="五、项目CMakeList-txt实例"><a href="#五、项目CMakeList-txt实例" class="headerlink" title="五、项目CMakeList.txt实例"></a>五、项目CMakeList.txt实例</h1><p>项目来源：<a target="_blank" rel="noopener" href="https://github.com/CandyConfident/HighPerformanceConcurrentServer">https://github.com/CandyConfident/HighPerformanceConcurrentServer</a>  </p>
+<p>out-of-source build，与in-source build相对，即将编译输出文件与源文件放到不同目录中。此项目为out-of-source build。</p>
+<h3 id="build-sh"><a href="#build-sh" class="headerlink" title="build.sh"></a>build.sh</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/sh</span><br><br>set -x<br><br>SOURCE_DIR=`pwd`<br>BUILD_DIR=$&#123;BUILD_DIR:-../build&#125;<br>BUILD_TYPE=$&#123;BUILD_TYPE:-Debug&#125; #表示是debug版本，不是release版本<br>DEBUG_FLAG=$&#123;DEBUG_FLAG:-1&#125;<br><br>mkdir -p $BUILD_DIR/$BUILD_TYPE \<br>    &amp;&amp; cd $BUILD_DIR/$BUILD_TYPE \<br>    &amp;&amp; cmake \<br>            -DCMAKE_BUILD_TYPE=$BUILD_TYPE \<br>            -DCMAKE_DEBUG_FLAG=$DEBUG_FLAG \<br>            $SOURCE_DIR \<br>    &amp;&amp; make $*<br></code></pre></td></tr></table></figure>
+<h3 id="总CMakeLists-txt"><a href="#总CMakeLists-txt" class="headerlink" title="总CMakeLists.txt"></a>总CMakeLists.txt</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.16</span>) <span class="hljs-comment">#指定cmake最小版本</span><br><span class="hljs-keyword">project</span>(MyServer CXX) <span class="hljs-comment">#指定项目名和程序语言,cxx=c++</span><br><br><span class="hljs-keyword">set</span>(CMAKE_CXX_STANDARD <span class="hljs-number">20</span>) <span class="hljs-comment">#指定C++标准</span><br><br><span class="hljs-keyword">if</span>(CMAKE_DEBUG_FLAG) <br>    <span class="hljs-keyword">set</span>(CMAKE_CXX_FLAGS <span class="hljs-string">&quot; $&#123;CMAKE_CXX_FLAGS&#125; -g&quot;</span>)<br><span class="hljs-keyword">endif</span>()<br><br><span class="hljs-keyword">message</span>(STATUS <span class="hljs-string">&quot;CMAKE_CXX_FLAGS = &quot;</span> <span class="hljs-variable">$&#123;CMAKE_CXX_FLAGS&#125;</span>) <span class="hljs-comment">#打印消息</span><br><br><span class="hljs-comment"># 添加子目录,同时将子目录下的CMakeLists.txt文件执行</span><br><span class="hljs-keyword">add_subdirectory</span>(log/tests)<br><span class="hljs-keyword">add_subdirectory</span>(threadpool/tests)<br><span class="hljs-keyword">add_subdirectory</span>(timer/tests)<br><span class="hljs-keyword">add_subdirectory</span>(memory/tests)<br><span class="hljs-keyword">add_subdirectory</span>(net/tests)<br></code></pre></td></tr></table></figure>
+<h3 id="子CMakeLists-txt"><a href="#子CMakeLists-txt" class="headerlink" title="子CMakeLists.txt"></a>子CMakeLists.txt</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">aux_source_directory</span>(.. native_source) <span class="hljs-comment">#将当前文件夹所有源文件名添加到上一级目录中native_source中</span><br><span class="hljs-keyword">set</span>(SRCS  <span class="hljs-comment">#设置SRCS变量为多个值</span><br>    test_mem.cpp<br>    ../../log/pr.cpp<br>    ../../log/log.cpp<br>)<br><span class="hljs-keyword">list</span>(APPEND SRCS <span class="hljs-variable">$&#123;native_source&#125;</span>)<br><br><span class="hljs-keyword">set</span>(INCS<br>    ../<br>    ../../log<br>)<br><span class="hljs-keyword">include_directories</span>(<span class="hljs-variable">$&#123;INCS&#125;</span>) <span class="hljs-comment">#指定头文件路径</span><br><br><span class="hljs-keyword">add_executable</span>(mem_test <span class="hljs-variable">$&#123;SRCS&#125;</span>) <span class="hljs-comment">#将SRCS中源文件生成可执行文件mem_test</span><br><span class="hljs-keyword">target_link_libraries</span>(mem_test pthread) <span class="hljs-comment">#添加链接库</span><br><br><span class="hljs-keyword">list</span>(REMOVE_ITEM SRCS test_mem.cpp)<br><span class="hljs-keyword">list</span>(APPEND SRCS test_buf.cpp)<br><span class="hljs-keyword">add_executable</span>(buf_test <span class="hljs-variable">$&#123;SRCS&#125;</span>)<br><span class="hljs-keyword">target_link_libraries</span>(buf_test pthread)<br></code></pre></td></tr></table></figure>
+
+
 
                 
               </div>
@@ -358,7 +420,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Linux/">#Linux</a>
+        <a href="/tags/cmake/">#cmake</a>
       
     </div>
   
@@ -370,8 +432,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>shell语法总结</div>
-      <div>http://beidaoxiangcai.github.io/2021/03/14/shell语法总结/</div>
+      <div>CMake常用操作总结</div>
+      <div>http://beidaoxiangcai.github.io/2022/03/08/cmake_note/</div>
     </div>
     <div class="license-meta">
       
@@ -383,7 +445,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2021年3月14日</div>
+          <div>2022年3月8日</div>
         </div>
       
       
@@ -415,9 +477,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/09/14/sql%E5%AD%A6%E4%B9%A0/" title="SQL语法总结">
+                      <a href="/2022/08/10/markdown%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Markdown学习笔记">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SQL语法总结</span>
+                        <span class="hidden-mobile">Markdown学习笔记</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -425,8 +487,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/03/14/C-std-priority-queue%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E8%AF%A6%E8%A7%A3/" title="C++ std::priority_queue优先队列详解">
-                        <span class="hidden-mobile">C++ std::priority_queue优先队列详解</span>
+                      <a href="/2022/02/28/Git%E5%B8%B8%E7%94%A8%E6%80%BB%E7%BB%93/" title="Git常用操作总结">
+                        <span class="hidden-mobile">Git常用操作总结</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -446,8 +508,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'http://beidaoxiangcai.github.io/2021/03/14/shell%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/';
-          this.page.identifier = '/2021/03/14/shell%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/';
+          this.page.url = 'http://beidaoxiangcai.github.io/2022/03/08/cmake_note/';
+          this.page.identifier = '/2022/03/08/cmake_note/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');

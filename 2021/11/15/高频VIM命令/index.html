@@ -16,26 +16,26 @@
   <meta name="author" content="Jianing Chen">
   <meta name="keywords" content="C++">
   
-    <meta name="description" content="目前大家好，我目前是是一名应届程序媛，涉足 C++&#x2F; Python &#x2F; SQL &#x2F; Linux 等技术栈。 偶尔会进行写一些日常学习中的总结，另外日常会刷一些leetcode，保持算法手感。 交流你懂得，拉了个群大家可以一起刷题交流。 如果你想与我交流或者进刷题群，可以点击下放的微信二维码，加我微信交流，备注：博客。  再次感谢你的关注与阅读。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://beidaoxiangcai.github.io/about/index.html">
+    <meta name="description" content="VIM命令查找 normal模式下用&#x2F; 用n查找下一个，N查找上一个 尾部加\c表示大小写不敏感，\C敏感，如&#x2F;foll\C 按下*，可查找光标所在单词（前后有空白），g*则可查光标所在字符序列  替换 &#96;&#96;&#96;:{作用范围}s&#x2F;{目标}&#x2F;{替换}&#x2F;{替换标志}123456+ &#96;&#96;&#96;  :%s&#x2F;foo&#x2F;bar&#x2F;gc   # %">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高频VIM命令">
+<meta property="og:url" content="http://beidaoxiangcai.github.io/2021/11/15/%E9%AB%98%E9%A2%91VIM%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="佳柠的博客">
-<meta property="og:description" content="目前大家好，我目前是是一名应届程序媛，涉足 C++&#x2F; Python &#x2F; SQL &#x2F; Linux 等技术栈。 偶尔会进行写一些日常学习中的总结，另外日常会刷一些leetcode，保持算法手感。 交流你懂得，拉了个群大家可以一起刷题交流。 如果你想与我交流或者进刷题群，可以点击下放的微信二维码，加我微信交流，备注：博客。  再次感谢你的关注与阅读。">
+<meta property="og:description" content="VIM命令查找 normal模式下用&#x2F; 用n查找下一个，N查找上一个 尾部加\c表示大小写不敏感，\C敏感，如&#x2F;foll\C 按下*，可查找光标所在单词（前后有空白），g*则可查光标所在字符序列  替换 &#96;&#96;&#96;:{作用范围}s&#x2F;{目标}&#x2F;{替换}&#x2F;{替换标志}123456+ &#96;&#96;&#96;  :%s&#x2F;foo&#x2F;bar&#x2F;gc   # %">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://beidaoxiangcai.github.io/img/wechat.jpg">
-<meta property="article:published_time" content="2023-03-02T18:13:25.000Z">
-<meta property="article:modified_time" content="2023-03-04T14:34:28.582Z">
+<meta property="og:image" content="http://beidaoxiangcai.github.io/img/page/vim.png">
+<meta property="article:published_time" content="2021-11-15T10:09:13.000Z">
+<meta property="article:modified_time" content="2023-03-04T14:33:03.610Z">
 <meta property="article:author" content="Jianing Chen">
-<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://beidaoxiangcai.github.io/img/wechat.jpg">
+<meta name="twitter:image" content="http://beidaoxiangcai.github.io/img/page/vim.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>关于 - 佳柠的博客</title>
+  <title>高频VIM命令 - 佳柠的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -110,7 +110,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 60vh;">
+<div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -216,9 +216,51 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="关于"></span>
+            <span id="subtitle" data-typed-text="高频VIM命令"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-15 11:09" pubdate>
+          2021年11月15日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          638 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
 
         
       </div>
@@ -234,69 +276,205 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-            <div class="about-avatar">
-              <img src="/img/avatar.jpg" srcset="/img/loading.gif" lazyload class="img-fluid" alt="avatar">
-            </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center">
-  <div class="about-info">
-    <div class="about-name">佳柠</div>
-    <div class="about-intro">不加班的佳柠</div>
-    <div class="about-icons">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-        
-        
-        
-        <a href=https://github.com/JacksonMei/ class="
-           hint--bottom hint--rounded"
-           aria-label=GitHub
-           target="_blank"
-        >
-          <i class="iconfont icon-github-fill" aria-hidden="true"></i>
-          
-        </a>
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">高频VIM命令</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="VIM命令"><a href="#VIM命令" class="headerlink" title="VIM命令"></a>VIM命令</h2><h4 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h4><ul>
+<li>normal模式下用&#x2F;</li>
+<li>用n查找下一个，N查找上一个</li>
+<li>尾部加\c表示大小写不敏感，\C敏感，如&#x2F;foll\C</li>
+<li>按下*，可查找光标所在单词（前后有空白），g*则可查光标所在字符序列</li>
+</ul>
+<h4 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h4><ul>
+<li>&#96;&#96;&#96;<br>:{作用范围}s&#x2F;{目标}&#x2F;{替换}&#x2F;{替换标志}<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><br>+ ```<br>  <span class="hljs-symbol">:%s/foo/bar/gc</span> <br>  <span class="hljs-comment"># %表示作用全文</span><br>  替换标志中g表示替换所有，没有表示只替换第一个<br>  替换标志中c表示需确认<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h4><ul>
+<li><p><strong>从windows复制到vim</strong>，需先按a&#x2F;i&#x2F;insert键进入插入模式，再右键粘贴，否则在命令模式下将识别为vim命令直至遇到i&#x2F;a</p>
+</li>
+<li><p><strong>复制选中区</strong>，光标在复制开始地方按v进入可视模式，结束地方按y复制，直待粘贴处按p粘贴</p>
+</li>
+<li><p>复制整行，yy</p>
+</li>
+<li><p>剪切整行，dd</p>
+</li>
+<li><p>粘贴,p， 粘贴在光标前为P</p>
+</li>
+</ul>
+<h4 id="光标跳转"><a href="#光标跳转" class="headerlink" title="光标跳转"></a>光标跳转</h4><ul>
+<li>文件首： gg</li>
+<li>文件尾： shift + g</li>
+<li>文件指定行： 行号（命令行模式）</li>
+<li>行首： home键</li>
+<li>行尾： end键</li>
+</ul>
+<h4 id="查历史命令"><a href="#查历史命令" class="headerlink" title="查历史命令"></a>查历史命令</h4><p>窗口中ctrl + R，输入关键词如<code>git commit</code>，将出现以该关键词为首的历史命令，通过多次ctrl + R来选择切换历史命令，然后通过右箭头选中命令</p>
+<p><img src="/img/linux-cmd.png" srcset="/img/loading.gif" lazyload alt="历史命令"></p>
+<h4 id="tab设置"><a href="#tab设置" class="headerlink" title="tab设置"></a>tab设置</h4><ul>
+<li><p>显示tab  命令模式下<code>set list</code></p>
+</li>
+<li><p>设置tab为4空格，且自动缩进， &#x2F;etc&#x2F;vimrc中添加</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">set</span> <span class="hljs-attribute">ts</span>=4<br><span class="hljs-built_in">set</span> <span class="hljs-attribute">softtabstop</span>=4<br><span class="hljs-built_in">set</span> <span class="hljs-attribute">shiftwidth</span>=4<br><span class="hljs-built_in">set</span> expandtab<br><span class="hljs-built_in">set</span> autoindent<br></code></pre></td></tr></table></figure></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
       
-        
-        
-        
-        <a  class="qr-trigger
-           "
-           
-           target="_self"
-        >
-          <i class="iconfont icon-wechat-fill" aria-hidden="true"></i>
-          
-            <img class="qr-img" src="/img/wechat.jpg" srcset="/img/loading.gif" lazyload alt="qrcode" />
-          
-        </a>
+        <a href="/tags/Linux/">#Linux</a>
       
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>高频VIM命令</div>
+      <div>http://beidaoxiangcai.github.io/2021/11/15/高频VIM命令/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Jianing Chen</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年11月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/28/Git%E5%B8%B8%E7%94%A8%E6%80%BB%E7%BB%93/" title="Git常用操作总结">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Git常用操作总结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/14/sql%E5%AD%A6%E4%B9%A0/" title="SQL语法总结">
+                        <span class="hidden-mobile">SQL语法总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'http://beidaoxiangcai.github.io/2021/11/15/%E9%AB%98%E9%A2%91VIM%E5%91%BD%E4%BB%A4/';
+          this.page.identifier = '/2021/11/15/%E9%AB%98%E9%A2%91VIM%E5%91%BD%E4%BB%A4/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
     </div>
   </div>
 </div>
 
-<article class="about-content page-content mt-5">
-  <div class="markdown-body">
-    <h4 id="目前"><a href="#目前" class="headerlink" title="目前"></a>目前</h4><p>大家好，我目前是是一名应届程序媛，涉足 C++&#x2F; Python &#x2F; SQL &#x2F; Linux 等技术栈。</p>
-<p>偶尔会进行写一些日常学习中的总结，另外日常会刷一些leetcode，保持算法手感。</p>
-<h4 id="交流"><a href="#交流" class="headerlink" title="交流"></a>交流</h4><p>你懂得，拉了个群大家可以一起刷题交流。</p>
-<p>如果你想与我交流或者进刷题群，可以点击下放的微信二维码，加我微信交流，备注：博客。</p>
-<p><img src="/img/wechat.jpg" srcset="/img/loading.gif" lazyload alt="wechat"></p>
-<p>再次感谢你的关注与阅读。</p>
-
-  </div>
-
-  
-</article>
-
 
 
 
@@ -323,11 +501,8 @@
 
 
 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+
     
 
     
@@ -444,6 +619,46 @@
   
 
 
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
   <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>

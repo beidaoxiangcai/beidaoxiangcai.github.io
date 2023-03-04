@@ -16,26 +16,26 @@
   <meta name="author" content="Jianing Chen">
   <meta name="keywords" content="C++">
   
-    <meta name="description" content="Shell语法运行 .&#x2F;aa.sh 打开一个subshell去读取、执行aa.sh，而aa.sh需要有执行权限 依赖首行明确解释器类型，否则就不在subshell中执行 通知系统在当前目录找aa.sh,而直接执行aa.sh&#96;，linux 系统将在 PATH里的目录里找aa.sh   sh&#x2F;bash aa.sh   打开一个subshell运行解释器去读取、执行aa.sh，文件名作为参数，无">
+    <meta name="description" content="批量删除Git分支删本地分支git branch 输出分支列表， 通过管道过滤出包含关键词 keyname分支名的分支，传递给git branch -D 本地分支强制删除命令中，实现批量删除包含keyname字符串的本地分支 1git branch |grep &amp;#x27;keyname&amp;#x27; | xargs git branch -D  删远程分支git branch 输出分支列表， 通过">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shell语法总结">
-<meta property="og:url" content="http://beidaoxiangcai.github.io/2021/03/14/shell%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="Git常用操作总结">
+<meta property="og:url" content="http://beidaoxiangcai.github.io/2022/02/28/Git%E5%B8%B8%E7%94%A8%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="佳柠的博客">
-<meta property="og:description" content="Shell语法运行 .&#x2F;aa.sh 打开一个subshell去读取、执行aa.sh，而aa.sh需要有执行权限 依赖首行明确解释器类型，否则就不在subshell中执行 通知系统在当前目录找aa.sh,而直接执行aa.sh&#96;，linux 系统将在 PATH里的目录里找aa.sh   sh&#x2F;bash aa.sh   打开一个subshell运行解释器去读取、执行aa.sh，文件名作为参数，无">
+<meta property="og:description" content="批量删除Git分支删本地分支git branch 输出分支列表， 通过管道过滤出包含关键词 keyname分支名的分支，传递给git branch -D 本地分支强制删除命令中，实现批量删除包含keyname字符串的本地分支 1git branch |grep &amp;#x27;keyname&amp;#x27; | xargs git branch -D  删远程分支git branch 输出分支列表， 通过">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://beidaoxiangcai.github.io/img/page/shell.png">
-<meta property="article:published_time" content="2021-03-14T20:35:11.000Z">
-<meta property="article:modified_time" content="2021-03-14T13:39:18.000Z">
+<meta property="og:image" content="http://beidaoxiangcai.github.io/img/page/git.png">
+<meta property="article:published_time" content="2022-02-28T15:58:57.000Z">
+<meta property="article:modified_time" content="2023-03-04T14:26:49.718Z">
 <meta property="article:author" content="Jianing Chen">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://beidaoxiangcai.github.io/img/page/shell.png">
+<meta name="twitter:image" content="http://beidaoxiangcai.github.io/img/page/git.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>shell语法总结 - 佳柠的博客</title>
+  <title>Git常用操作总结 - 佳柠的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -216,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="shell语法总结"></span>
+            <span id="subtitle" data-typed-text="Git常用操作总结"></span>
           
         </div>
 
@@ -227,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-03-14 21:35" pubdate>
-          2021年3月14日 晚上
+        <time datetime="2022-02-28 16:58" pubdate>
+          2022年2月28日 下午
         </time>
       </span>
     
@@ -240,7 +240,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.4k 字
+          1k 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
           <!-- compatible with older versions-->
-          12 分钟
+          9 分钟
         
       </span>
     
@@ -290,62 +290,33 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">shell语法总结</h1>
+            <h1 style="display: none">Git常用操作总结</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="Shell语法"><a href="#Shell语法" class="headerlink" title="Shell语法"></a>Shell语法</h2><h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><ul>
-<li><code>./aa.sh</code><ul>
-<li>打开一个<strong>subshell</strong>去读取、执行aa.sh，而aa.sh<strong>需要有执行权限</strong></li>
-<li>依赖首行明确解释器类型，否则就不在subshell中执行</li>
-<li>通知系统在当前目录找aa.sh,而直接执行aa.sh&#96;，linux 系统将在 PATH里的目录里找aa.sh</li>
-</ul>
-</li>
-<li><code>sh/bash aa.sh</code>  <ul>
-<li>打开一个<strong>subshell</strong>运行解释器去读取、执行aa.sh，文件名作为参数，<strong>无需执行权限</strong></li>
-<li>无需在首行写类似<code>#!/bin/bash*</code>来明确解释器</li>
-</ul>
-</li>
-<li><code>source aa.sh</code><ul>
-<li><strong>当前shell内</strong>读取、执行aa.sh，会保留和改变当前shell中的变量，<strong>无需执行权限</strong></li>
-<li>soure可以简化为点号”.”，推荐点号</li>
-</ul>
-</li>
-</ul>
-<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><ul>
-<li><p>$aa与${aa}没有区别，但是{}可以用来明确变量边界，同时支持拼接</p>
-</li>
-<li><p><code>readonly aa</code> 设置变量aa为只读</p>
-</li>
-<li><p><code>unset aa</code> 删除变量aa, 不能删只读变量</p>
-</li>
-<li><p>shell变量</p>
-<ul>
-<li>&#96;&#96;&#96;<br>$$ &#x2F;&#x2F; shell本身PID<br>$* $@  参数列表（不包括脚本文件名）<br>$# 参数列表中参数个数<br>$0 脚本文件名<br>$n 第n个参数<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs clean"><br>#### 字符串<br><br>+ 单引号里的任何字符都会原样输出，因而变量是无效的<br>+ 字符串长度 `$&#123;#string&#125;`<br>+ 截取子串 `$&#123;string:<span class="hljs-number">1</span>:<span class="hljs-number">4</span>&#125;` 截取string位置<span class="hljs-number">1</span>开始的<span class="hljs-number">4</span>个字符<br><br>#### 数组<br><br>```shell<br>array_name=(value0 value1 value2 value3) #不限定长度，下标从<span class="hljs-number">0</span>开始，空格分割<br>array_name[n]=valuen <br>$&#123;array_name[@]&#125; # 使用 @ 符号可以获取数组中的所有元素<br>length=$&#123;#array_name[@]&#125; # 取得数组元素的个数<br>lengthn=$&#123;#array_name[n]&#125; # 取得数组单个元素的长度<br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h4 id="多行注释"><a href="#多行注释" class="headerlink" title="多行注释"></a>多行注释</h4><ul>
-<li>&#96;&#96;&#96;shell<br>: &lt;&lt;’COMMENT’<br>something<br>COMMENT<br>或者<br>: &lt;&lt;!<br>something<br>!<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs awk"><br><span class="hljs-comment">#### Shell编码</span><br><br><span class="hljs-comment">#### cd安全</span><br><br>+ cd可能由于错误路径、无权限等问题而失败，一旦失败后续操作将在错误目录上继续执行，引发误操作。<br>+ 通过添加错误判断并<span class="hljs-keyword">exit</span>方式避免错误操作。<br><br>```shell<br>cd foo || <span class="hljs-keyword">exit</span> <span class="hljs-regexp">//</span> <span class="hljs-keyword">exit</span>返回cd错误码<br>cd foo || &#123; echo <span class="hljs-string">&quot;Failure&quot;</span>; <span class="hljs-keyword">exit</span> <span class="hljs-number">1</span>; &#125;<br></code></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h4><p>进入当前脚本路径</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$</span><span class="language-bash">(<span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(dirname $0)</span>&quot;</span>;<span class="hljs-built_in">pwd</span>)</span><br></code></pre></td></tr></table></figure>
+                <h2 id="批量删除Git分支"><a href="#批量删除Git分支" class="headerlink" title="批量删除Git分支"></a>批量删除Git分支</h2><h3 id="删本地分支"><a href="#删本地分支" class="headerlink" title="删本地分支"></a>删本地分支</h3><p>git branch 输出分支列表， 通过管道过滤出包含关键词 keyname分支名的分支，传递给git branch -D 本地分支强制删除命令中，实现<strong>批量删除包含keyname字符串的本地分支</strong></p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coq">git branch |<span class="hljs-type">grep</span> &#x27;keyname&#x27; | <span class="hljs-type">xargs</span> git branch -D<br></code></pre></td></tr></table></figure>
 
-<p>进入当前函数执行路径，如脚本A调用脚本B，在B中执行则得到B的路径</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$</span><span class="language-bash">( <span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;<span class="hljs-subst">$( dirname <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;BASH_SOURCE[0]&#125;</span>&quot;</span> )</span>&quot;</span> &amp;&amp; <span class="hljs-built_in">pwd</span> )</span><br></code></pre></td></tr></table></figure>
+<h4 id="删远程分支"><a href="#删远程分支" class="headerlink" title="删远程分支"></a>删远程分支</h4><p>git branch 输出分支列表， 通过管道过滤出包含关键词 keyname分支名的分支，传递给git push origin –delete 远端分支强制删除命令中，实现<strong>批量删除包含keyname字符串的远端分支</strong></p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gradle">git branch |<span class="hljs-keyword">grep</span> <span class="hljs-string">&#x27;keyname&#x27;</span> | xargs git <span class="hljs-keyword">push</span> origin --<span class="hljs-keyword">delete</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="误删分支找回"><a href="#误删分支找回" class="headerlink" title="误删分支找回"></a>误删分支找回</h2><p>git reflog查看所有分支的commit记录,根据commit记录创建分支</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe">git branch <span class="hljs-keyword">new</span><span class="hljs-type">BranchName</span> HEAD@&#123;**&#125;<br></code></pre></td></tr></table></figure>
+
+<p>切换到新分支后，push到远端即可恢复远端分支</p>
+<p><img src="/img/findback-branch.png" srcset="/img/loading.gif" lazyload alt="找回分支"></p>
+<h2 id="Git快捷命令配置（别名）"><a href="#Git快捷命令配置（别名）" class="headerlink" title="Git快捷命令配置（别名）"></a>Git快捷命令配置（别名）</h2><p>git bash窗口中vi &#x2F;etc&#x2F;bash.bashrc，在尾部添加如下代码</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs routeros">alias <span class="hljs-attribute">gst</span>=<span class="hljs-string">&#x27;git status&#x27;</span><br>alias <span class="hljs-attribute">gdiff</span>=<span class="hljs-string">&#x27;git diff&#x27;</span><br>alias <span class="hljs-attribute">gadd</span>=<span class="hljs-string">&#x27;git add&#x27;</span><br>alias <span class="hljs-attribute">gci</span>=<span class="hljs-string">&#x27;git commit -m &quot;hello world&quot;&#x27;</span><br>alias <span class="hljs-attribute">gthis</span>=<span class="hljs-string">&#x27;git rev-parse --abbrev-ref HEAD&#x27;</span><br>alias <span class="hljs-attribute">gpush</span>=<span class="hljs-string">&#x27;git push origin `gthis`&#x27;</span><br>alias <span class="hljs-attribute">gco</span>=<span class="hljs-string">&#x27;git checkout&#x27;</span><br>alias <span class="hljs-attribute">gbr</span>=<span class="hljs-string">&#x27;git branch&#x27;</span><br>alias <span class="hljs-attribute">gname</span>=<span class="hljs-string">&#x27;vi /etc/bash.bashrc&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>保存后重启bash窗口，生效快捷命令映射</p>
+<p>若保存时，遇到[&#x2F;etc&#x2F;bashrc Permission denied，则用管理员权限打开git bash重试即可</p>
+<p><img src="/img/bash-run.png" srcset="/img/loading.gif" lazyload alt="管理员权限运行bash"></p>
+<h2 id="记录Git用户名密码"><a href="#记录Git用户名密码" class="headerlink" title="记录Git用户名密码"></a>记录Git用户名密码</h2><p>git 默认每次pull等操作时要求输入密码，比较麻烦，可通过如下命令永久保存密码，再输入一次后就无需输入了。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">git config credential.helper store<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="静波代码检视"><a href="#静波代码检视" class="headerlink" title="静波代码检视"></a>静波代码检视</h2><h4 id="离线检测"><a href="#离线检测" class="headerlink" title="离线检测"></a>离线检测</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">apt-get install shellcheck<br>shellcheck file.sh<br></code></pre></td></tr></table></figure>
-
-<h4 id="在线检测"><a href="#在线检测" class="headerlink" title="在线检测"></a>在线检测</h4><ul>
-<li><p>在线检测<a target="_blank" rel="noopener" href="https://www.shellcheck.net/%EF%BC%8C%E8%B4%B4%E5%85%A5%E4%BB%A3%E7%A0%81%EF%BC%8C%E8%87%AA%E5%8A%A8%E6%A3%80%E6%B5%8B">https://www.shellcheck.net/，贴入代码，自动检测</a></p>
-</li>
-<li><p>注意加上 <code>#!/bin/bash</code>，否则报错</p>
-</li>
-</ul>
-<p><img src="/img/shell-check.png" srcset="/img/loading.gif" lazyload alt="shellcheck示意"></p>
 
                 
               </div>
@@ -358,7 +329,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Linux/">#Linux</a>
+        <a href="/tags/Git/">#Git</a>
       
     </div>
   
@@ -370,8 +341,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>shell语法总结</div>
-      <div>http://beidaoxiangcai.github.io/2021/03/14/shell语法总结/</div>
+      <div>Git常用操作总结</div>
+      <div>http://beidaoxiangcai.github.io/2022/02/28/Git常用总结/</div>
     </div>
     <div class="license-meta">
       
@@ -383,7 +354,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2021年3月14日</div>
+          <div>2022年2月28日</div>
         </div>
       
       
@@ -415,9 +386,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/09/14/sql%E5%AD%A6%E4%B9%A0/" title="SQL语法总结">
+                      <a href="/2022/03/08/cmake_note/" title="CMake常用操作总结">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SQL语法总结</span>
+                        <span class="hidden-mobile">CMake常用操作总结</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -425,8 +396,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/03/14/C-std-priority-queue%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E8%AF%A6%E8%A7%A3/" title="C++ std::priority_queue优先队列详解">
-                        <span class="hidden-mobile">C++ std::priority_queue优先队列详解</span>
+                      <a href="/2021/11/15/%E9%AB%98%E9%A2%91VIM%E5%91%BD%E4%BB%A4/" title="高频VIM命令">
+                        <span class="hidden-mobile">高频VIM命令</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -446,8 +417,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'http://beidaoxiangcai.github.io/2021/03/14/shell%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/';
-          this.page.identifier = '/2021/03/14/shell%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/';
+          this.page.url = 'http://beidaoxiangcai.github.io/2022/02/28/Git%E5%B8%B8%E7%94%A8%E6%80%BB%E7%BB%93/';
+          this.page.identifier = '/2022/02/28/Git%E5%B8%B8%E7%94%A8%E6%80%BB%E7%BB%93/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
