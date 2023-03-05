@@ -16,16 +16,16 @@
   <meta name="author" content="Jianing Chen">
   <meta name="keywords" content="C++">
   
-    <meta name="description" content="C++ 多态特性及简单示例C++ 是一种面向对象的编程语言，其中的多态特性允许开发者在运行时根据对象的类型来调用相应的函数。这里我会介绍 C++ 多态的概念和几种不同的实现方式，并提供一些代码示例。 多态 🔎多态（polymorphism）是一种基于继承的机制，它允许不同的对象对同一消息作出不同的响应。换句话说，同样的方法调用可以在不同的对象上产生不同的结果。 静态多态：也称为编译时多态，主要通">
+    <meta name="description" content="STL priority_queue优先队列优先队列是一种容器适配器，队列元素要求实现了严格弱排序（Strict Weak Ordering），保证队列顶点（top）元素始终为最大值（最小值）。 优先队列本质上是一种堆，默认最大堆，即每一个父节点的值都比其子节点要大，因此根节点中的元素总是树中的最大值，因此常用于最值的读取。在时间复杂度上，优先队列实现单个元素的增删都是O(log n)，而读取队列">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++ 多态特性及简单示例">
-<meta property="og:url" content="http://beidaoxiangcai.github.io/2022/08/09/C-std-priority-queue%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:title" content="C++ std::priority_queue优先队列详解">
+<meta property="og:url" content="http://beidaoxiangcai.github.io/2021/03/14/C-std-priority-queue%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="佳柠的博客">
-<meta property="og:description" content="C++ 多态特性及简单示例C++ 是一种面向对象的编程语言，其中的多态特性允许开发者在运行时根据对象的类型来调用相应的函数。这里我会介绍 C++ 多态的概念和几种不同的实现方式，并提供一些代码示例。 多态 🔎多态（polymorphism）是一种基于继承的机制，它允许不同的对象对同一消息作出不同的响应。换句话说，同样的方法调用可以在不同的对象上产生不同的结果。 静态多态：也称为编译时多态，主要通">
+<meta property="og:description" content="STL priority_queue优先队列优先队列是一种容器适配器，队列元素要求实现了严格弱排序（Strict Weak Ordering），保证队列顶点（top）元素始终为最大值（最小值）。 优先队列本质上是一种堆，默认最大堆，即每一个父节点的值都比其子节点要大，因此根节点中的元素总是树中的最大值，因此常用于最值的读取。在时间复杂度上，优先队列实现单个元素的增删都是O(log n)，而读取队列">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://beidaoxiangcai.github.io/img/page/cpp.png">
-<meta property="article:published_time" content="2022-08-09T18:15:56.000Z">
-<meta property="article:modified_time" content="2023-03-04T15:03:44.247Z">
+<meta property="article:published_time" content="2021-03-14T19:57:54.000Z">
+<meta property="article:modified_time" content="2023-03-05T10:42:53.959Z">
 <meta property="article:author" content="Jianing Chen">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +35,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>C++ 多态特性及简单示例 - 佳柠的博客</title>
+  <title>C++ std::priority_queue优先队列详解 - 佳柠的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -216,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="C++ 多态特性及简单示例"></span>
+            <span id="subtitle" data-typed-text="C++ std::priority_queue优先队列详解"></span>
           
         </div>
 
@@ -227,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-09 20:15" pubdate>
-          2022年8月9日 晚上
+        <time datetime="2021-03-14 20:57" pubdate>
+          2021年3月14日 晚上
         </time>
       </span>
     
@@ -240,7 +240,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2k 字
+          3.3k 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
           <!-- compatible with older versions-->
-          17 分钟
+          28 分钟
         
       </span>
     
@@ -290,25 +290,42 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">C++ 多态特性及简单示例</h1>
+            <h1 style="display: none">C++ std::priority_queue优先队列详解</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="C-多态特性及简单示例"><a href="#C-多态特性及简单示例" class="headerlink" title="C++ 多态特性及简单示例"></a>C++ 多态特性及简单示例</h1><p>C++ 是一种面向对象的编程语言，其中的多态特性允许开发者在运行时根据对象的类型来调用相应的函数。这里我会介绍 C++ 多态的概念和几种不同的实现方式，并提供一些代码示例。</p>
-<h2 id="多态-🔎"><a href="#多态-🔎" class="headerlink" title="多态 🔎"></a>多态 🔎</h2><p>多态（polymorphism）是一种基于继承的机制，它允许不同的对象对同一消息作出不同的响应。换句话说，同样的方法调用可以在不同的对象上产生不同的结果。</p>
-<p>静态多态：也称为编译时多态，主要通过函数重载和模板实现。在编译时期就能够确定函数的调用版本或者类的实例类型，因此也称为静态绑定。例如，通过重载函数名和参数列表，我们可以在编译时就确定具体调用哪个函数版本。</p>
-<p>动态多态：也称为运行时多态，主要通过虚函数实现。在编译时期无法确定函数调用的版本，而是在运行时期根据实际对象类型来确定调用哪个函数版本。因此也称为动态绑定。我们可以在基类中声明虚函数，然后在派生类中重写该函数，当使用基类指针或引用调用虚函数时，实际调用的是该指针或引用所指向的对象类型的虚函数版本。</p>
-<p>静态多态在编译时期就能够确定函数调用的版本，而动态多态需要在运行时期根据实际对象类型来确定函数调用的版本。多态机制使得我们能够编写通用的代码，更加灵活和可扩展。</p>
-<h2 id="虚函数实现多态"><a href="#虚函数实现多态" class="headerlink" title="虚函数实现多态"></a>虚函数实现多态</h2><p>虚函数是 C++ 中实现多态的一种常用方式。虚函数是在基类中声明的，用 virtual 关键字来修饰，它允许派生类重写该函数。当调用该函数时，编译器会根据实际对象的类型来调用对应的重写函数。下面是一个虚函数的示例代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Shape</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">draw</span><span class="hljs-params">()</span> </span>&#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Drawing a shape...&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Circle</span> : <span class="hljs-keyword">public</span> Shape &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">draw</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>&#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Drawing a circle...&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Square</span> : <span class="hljs-keyword">public</span> Shape &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">draw</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>&#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Drawing a square...&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    Shape* shape1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Circle</span>();<br>    Shape* shape2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Square</span>();<br>    shape1-&gt;<span class="hljs-built_in">draw</span>();<br>    shape2-&gt;<span class="hljs-built_in">draw</span>();<br>    <span class="hljs-keyword">delete</span> shape1;<br>    <span class="hljs-keyword">delete</span> shape2;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+                <h2 id="STL-priority-queue优先队列"><a href="#STL-priority-queue优先队列" class="headerlink" title="STL priority_queue优先队列"></a>STL priority_queue优先队列</h2><p>优先队列是一种容器适配器，队列元素要求实现了严格弱排序（Strict Weak Ordering），保证队列顶点（top）元素始终为最大值（最小值）。</p>
+<p>优先队列本质上是一种堆，默认最大堆，即每一个父节点的值都比其子节点要大，因此根节点中的元素总是树中的最大值，因此常用于最值的读取。在时间复杂度上，优先队列实现单个元素的增删都是O(log n)，而读取队列顶点则为O(1)</p>
+<h2 id="接口原型-🔎"><a href="#接口原型-🔎" class="headerlink" title="接口原型 🔎"></a>接口原型 🔎</h2><p>如下接口定义可以看出，优先队列的定义包含三个元素：</p>
+<ul>
+<li>元素类型T；</li>
+<li>存储元素的基础容器类型，要求为拥有连续内存分布的<a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/named_req/SequenceContainer">SequenceContainer</a>， STL中满足的就是std::vector and std::deque两种了；</li>
+<li>元素比较函数Compare， Compare函数主要用于元素比较，实现严格的弱排序，由于排序，优先队列已经不满足“先进先出”的特性了。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>, <span class="hljs-keyword">class</span> <span class="hljs-title class_">Container</span> = vector&lt;T&gt;,<br>  <span class="hljs-keyword">class</span> Compare = less&lt;<span class="hljs-keyword">typename</span> Container::value_type&gt; &gt; <span class="hljs-keyword">class</span> priority_queue;<br></code></pre></td></tr></table></figure>
 
-<p>在上面的代码中，我们定义了一个基类 Shape，它包含了一个虚函数 draw()。我们还定义了两个派生类 Circle 和 Square，它们都重写了 draw() 函数。在 main 函数中，我们创建了两个指向 Shape 类型的指针，分别指向 Circle 和 Square 对象。我们调用它们的 draw() 函数，这会根据实际对象的类型来调用对应的重写函数，输出不同的结果。</p>
-<h2 id="模板实现多态"><a href="#模板实现多态" class="headerlink" title="模板实现多态"></a>模板实现多态</h2><p>模板是 C++ 中另一种实现多态的方式。模板允许我们编写一种通用的函数或类，它可以根据实际类型的参数来生成不同的代码。这种技术被称为泛型编程。下面是一个模板函数的示例代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">(T value)</span> </span>&#123;<br>    std::cout &lt;&lt; value &lt;&lt; std::endl;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">print</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">10</span>);<br>    <span class="hljs-built_in">print</span>&lt;<span class="hljs-type">double</span>&gt;(<span class="hljs-number">3.14</span>);<br>    <span class="hljs-built_in">print</span>&lt;std::string&gt;(<span class="hljs-string">&quot;hello&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>在上面的代码中，我们定义了一个模板函数 print()，它可以接受任意类型的参数，并将其打印到标准输出中。在 main 函数中，我们调用了 print() 函数三次，分别传入 int、double 和 std::string 类型的参数。由于模板的特性，编译器会根据实际类型的参数来生成不同的代码，这样我们就实现了多态。</p>
-<p>#总结<br>本篇博客介绍了 C++ 中多态的概念和两种不同的实现方式：虚函数和模板。虚函数是一种基于继承的机制，它允许派生类重写基类的函数，从而实现多态。模板是一种通用的编程技术，它可以根据实际类型的参数来生成不同的代码，也可以实现多态。希望本篇博客能够帮助你更好地理解 C++ 中的多态特性。</p>
+
+<h2 id="主要成员函数"><a href="#主要成员函数" class="headerlink" title="主要成员函数"></a>主要成员函数</h2><p>所有STL标准库实现的数据结构，都有对应的CRUD（增删改查）接口，形式也基本类似.</p>
+<p><img src="/img/priority_queues_feat.png" srcset="/img/loading.gif" lazyload alt="优先队列出入示意图"></p>
+<p><img src="/img/priority_queue_member_function.png" srcset="/img/loading.gif" lazyload alt="成员函数详解表"></p>
+<h2 id="Comp函数"><a href="#Comp函数" class="headerlink" title="Comp函数"></a><strong>Comp函数</strong></h2><p>comp函数默认为使用仿函数<code>std::less&lt;int&gt;</code>,表示最大堆 ，这里less是降序，但由于优先队列将top指向了队列尾；同理，<code>std::greater&lt;T&gt;</code>,表示最小堆.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Compare</span> = less&lt;<span class="hljs-keyword">typename</span> Container::value_type&gt; <br></code></pre></td></tr></table></figure>
+
+<p>comp函数要求严格弱排序，那么什么是严格弱排序</p>
+<p>维基百科给出了如下定义，简言之就是内置类型会通过<code>!(a &lt; b) &amp;&amp; !( b &lt; a ) </code>来判断ab是否相等，如果判断中携带了<code>=</code>如<code>&gt;=</code>、<code>&lt;=</code>，将导致相等判断逻辑出现错误。</p>
+<blockquote>
+<p>A Strict Weak Ordering is a Binary Predicate that compares two objects, returning true if the first precedes the second. This predicate must satisfy the standard mathematical definition of a strict weak ordering. The precise requirements are stated below, but what they roughly mean is that a Strict Weak Ordering has to behave the way that “less than” behaves: if a is less than b then b is not less than a, if a is less than b and b is less than c then a is less than c, and so on.</p>
+</blockquote>
+<p>另外当元素类型T为自定义类型时，那就需要自定义的comp函数，一般有实现后缀运算<code>()</code>函数 和 重载关系运算符 <code>&lt;</code>、 <code>&gt;</code> 两种方式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;queue&gt;</span> <span class="hljs-comment">// priority_queue头文件</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;functional&gt;</span> <span class="hljs-comment">// 仿函数头文件</span></span><br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Node</span> &#123;<br>		<span class="hljs-type">int</span> x, y; <br>		<span class="hljs-built_in">node</span>(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y) : <span class="hljs-built_in">x</span>(x), <span class="hljs-built_in">y</span>(y) &#123;&#125; <br>&#125;;<br> <br><span class="hljs-comment">// &lt;操作符用于仿函数std::less</span><br><span class="hljs-comment">// node比较先按照x降序，x相等时，再按照y降序</span><br><span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span> &lt; (Node a, Node b) <br>&#123; <br>      <span class="hljs-keyword">if</span> (a.x &gt; b.x) &#123;<br>					<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>			&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (a.x == b.x) &#123;<br>					<span class="hljs-keyword">return</span> a.y &gt; b.y; <span class="hljs-comment">// 严格弱排序</span><br>			&#125; <span class="hljs-keyword">else</span> &#123;<br>					<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>			&#125;      <br>&#125;<br><br>std::priority_queue&lt;Node, std::vector&lt;Node&gt;, std::less&lt;Node&gt;&gt; pq; <span class="hljs-comment">// 大顶堆</span><br><br><span class="hljs-comment">// &gt;操作符用于仿函数std::greater</span><br><span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span> &gt; (Node a, Node b)<br>&#123;<br>    <span class="hljs-keyword">return</span> a.x&gt; b.x;<br>&#125;<br><br>std::priority_queue&lt;Node, std::vector&lt;Node&gt;, std::greater&lt;Node&gt;&gt; pq; <span class="hljs-comment">// 小顶堆</span><br><br><span class="hljs-comment">// 自定义后缀操作符</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">cmp</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(Node a,Node b)</span></span><br><span class="hljs-function">    </span>&#123;<br>		  <span class="hljs-keyword">return</span> a.x &gt; b.x;<br>    &#125;<br>&#125;;<br><br>std::priority_queue&lt;Node, std::vector&lt;Node&gt;, cmp&gt; pq;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>优先队列作为数据结构中堆的一种具体实现，在leetcode算法题中出现频率较高。比如这题<a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-average-pass-ratio/">leetcode 1792. Maximum Average Pass Ratio</a></p>
+<p>在如下解答中，可以发现priority_queue的几个关键接口的使用。</p>
+<p>另外算法层面可以看到，通过对优先队列进行增删读元素，使得每次都对最值进行操作，也就保证了每次操作都为最优解。实际上这就是<strong>贪心算法，通过求解每个子问题的最优解，来得到整个问题的最终最优解</strong>。也正因如此，优先队列就常在一些有约束条件下的分配问题。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// !!整数除法一定先转double, 注意检查括号</span><br>    <span class="hljs-comment">// !!乘法注意溢出，少量的除法误差可以容忍</span><br>    <span class="hljs-meta">#<span class="hljs-keyword">define</span> cal(xy) ((double)(xy[0] +1) / (xy[1] + 1) - (double)(xy[0]) / (xy[1]))</span><br><br>    <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">maxAverageRatio</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; classes, <span class="hljs-type">int</span> extraStudents)</span> </span>&#123;<br>        priority_queue&lt;pair&lt;<span class="hljs-type">double</span>, <span class="hljs-type">int</span>&gt;&gt; qu; <span class="hljs-comment">// 默认最大堆</span><br>        <br>        <span class="hljs-comment">// 入队列，按照分配1个之后的差值，排序</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; classes.<span class="hljs-built_in">size</span>(); i++) &#123;            <br>            qu.<span class="hljs-built_in">emplace</span>(<span class="hljs-built_in">cal</span>(classes[i]), i); <span class="hljs-comment">// !!优先使用emplace/emplace_back， 比push/push_back更高效</span><br>        &#125;<br>        <br>        <span class="hljs-keyword">while</span> (extraStudents--) &#123;<br>            <span class="hljs-keyword">auto</span> [diff, i] = qu.<span class="hljs-built_in">top</span>();<br>            qu.<span class="hljs-built_in">pop</span>();<br>            <br>            <br>            <span class="hljs-comment">// 从队列中取出差值最大的一项，即分配给它后结果最大的</span><br>            classes[i][<span class="hljs-number">0</span>]++;<br>            classes[i][<span class="hljs-number">1</span>]++;<br>            <br>            <span class="hljs-comment">// 分配后重新塞回队列</span><br>            qu.<span class="hljs-built_in">push</span>(&#123;<span class="hljs-built_in">cal</span>(classes[i]), i&#125;);<br>        &#125;<br>        <br>        <span class="hljs-keyword">auto</span> maxsum = <span class="hljs-number">0.0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> c : classes) &#123;           <br>            <span class="hljs-comment">//cout &lt;&lt; cal(c) &lt;&lt; &quot;-&quot; &lt;&lt; c[0] &lt;&lt; &quot;-&quot; &lt;&lt; c[1] &lt;&lt; endl;</span><br>            maxsum += (<span class="hljs-type">double</span>)c[<span class="hljs-number">0</span>] / c[<span class="hljs-number">1</span>];<br>        &#125;<br>        <br>        <span class="hljs-keyword">return</span> maxsum / classes.<span class="hljs-built_in">size</span>();<br>    &#125;    <br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <p>⚠ <strong>Note</strong>: 转载请注明出处</p>
 
                 
@@ -334,8 +351,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>C++ 多态特性及简单示例</div>
-      <div>http://beidaoxiangcai.github.io/2022/08/09/C-std-priority-queue优先队列详解/</div>
+      <div>C++ std::priority_queue优先队列详解</div>
+      <div>http://beidaoxiangcai.github.io/2021/03/14/C-std-priority-queue优先队列详解/</div>
     </div>
     <div class="license-meta">
       
@@ -347,7 +364,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年8月9日</div>
+          <div>2021年3月14日</div>
         </div>
       
       
@@ -379,15 +396,15 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2021/08/10/markdown%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Markdown学习笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Markdown学习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/2022/07/11/shell%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" title="shell语法总结（2）">
-                        <span class="hidden-mobile">shell语法总结（2）</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>
@@ -404,8 +421,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'http://beidaoxiangcai.github.io/2022/08/09/C-std-priority-queue%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E8%AF%A6%E8%A7%A3/';
-          this.page.identifier = '/2022/08/09/C-std-priority-queue%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E8%AF%A6%E8%A7%A3/';
+          this.page.url = 'http://beidaoxiangcai.github.io/2021/03/14/C-std-priority-queue%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E8%AF%A6%E8%A7%A3/';
+          this.page.identifier = '/2021/03/14/C-std-priority-queue%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E8%AF%A6%E8%A7%A3/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');

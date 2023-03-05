@@ -16,26 +16,26 @@
   <meta name="author" content="Jianing Chen">
   <meta name="keywords" content="C++">
   
-    <meta name="description" content="Shell语法运行 .&#x2F;aa.sh 打开一个subshell去读取、执行aa.sh，而aa.sh需要有执行权限 依赖首行明确解释器类型，否则就不在subshell中执行 通知系统在当前目录找aa.sh,而直接执行aa.sh&#96;，linux 系统将在 PATH里的目录里找aa.sh   sh&#x2F;bash aa.sh   打开一个subshell运行解释器去读取、执行aa.sh，文件名作为参数，无">
+    <meta name="description" content="C++ 多态特性及简单示例C++ 是一种面向对象的编程语言，其中的多态特性允许开发者在运行时根据对象的类型来调用相应的函数。这里我会介绍 C++ 多态的概念和几种不同的实现方式，并提供一些代码示例。 多态 🔎多态（polymorphism）是一种基于继承的机制，它允许不同的对象对同一消息作出不同的响应。换句话说，同样的方法调用可以在不同的对象上产生不同的结果。 静态多态：也称为编译时多态，主要通">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shell语法总结（2）">
-<meta property="og:url" content="http://beidaoxiangcai.github.io/2022/07/11/shell%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="C++ 多态特性及简单示例">
+<meta property="og:url" content="http://beidaoxiangcai.github.io/2022/08/09/C++%20%E5%A4%9A%E6%80%81%E7%89%B9%E6%80%A7%E5%8F%8A%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B/index.html">
 <meta property="og:site_name" content="佳柠的博客">
-<meta property="og:description" content="Shell语法运行 .&#x2F;aa.sh 打开一个subshell去读取、执行aa.sh，而aa.sh需要有执行权限 依赖首行明确解释器类型，否则就不在subshell中执行 通知系统在当前目录找aa.sh,而直接执行aa.sh&#96;，linux 系统将在 PATH里的目录里找aa.sh   sh&#x2F;bash aa.sh   打开一个subshell运行解释器去读取、执行aa.sh，文件名作为参数，无">
+<meta property="og:description" content="C++ 多态特性及简单示例C++ 是一种面向对象的编程语言，其中的多态特性允许开发者在运行时根据对象的类型来调用相应的函数。这里我会介绍 C++ 多态的概念和几种不同的实现方式，并提供一些代码示例。 多态 🔎多态（polymorphism）是一种基于继承的机制，它允许不同的对象对同一消息作出不同的响应。换句话说，同样的方法调用可以在不同的对象上产生不同的结果。 静态多态：也称为编译时多态，主要通">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://beidaoxiangcai.github.io/img/page/shell.png">
-<meta property="article:published_time" content="2022-07-11T10:15:17.000Z">
-<meta property="article:modified_time" content="2023-03-04T14:45:28.555Z">
+<meta property="og:image" content="http://beidaoxiangcai.github.io/img/page/cpp.png">
+<meta property="article:published_time" content="2022-08-09T18:15:56.000Z">
+<meta property="article:modified_time" content="2023-03-05T10:41:55.780Z">
 <meta property="article:author" content="Jianing Chen">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://beidaoxiangcai.github.io/img/page/shell.png">
+<meta name="twitter:image" content="http://beidaoxiangcai.github.io/img/page/cpp.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>shell语法总结（2） - 佳柠的博客</title>
+  <title>C++ 多态特性及简单示例 - 佳柠的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -216,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="shell语法总结（2）"></span>
+            <span id="subtitle" data-typed-text="C++ 多态特性及简单示例"></span>
           
         </div>
 
@@ -227,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-07-11 12:15" pubdate>
-          2022年7月11日 中午
+        <time datetime="2022-08-09 20:15" pubdate>
+          2022年8月9日 晚上
         </time>
       </span>
     
@@ -240,7 +240,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.4k 字
+          2k 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
           <!-- compatible with older versions-->
-          12 分钟
+          17 分钟
         
       </span>
     
@@ -290,62 +290,26 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">shell语法总结（2）</h1>
+            <h1 style="display: none">C++ 多态特性及简单示例</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="Shell语法"><a href="#Shell语法" class="headerlink" title="Shell语法"></a>Shell语法</h2><h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><ul>
-<li><code>./aa.sh</code><ul>
-<li>打开一个<strong>subshell</strong>去读取、执行aa.sh，而aa.sh<strong>需要有执行权限</strong></li>
-<li>依赖首行明确解释器类型，否则就不在subshell中执行</li>
-<li>通知系统在当前目录找aa.sh,而直接执行aa.sh&#96;，linux 系统将在 PATH里的目录里找aa.sh</li>
-</ul>
-</li>
-<li><code>sh/bash aa.sh</code>  <ul>
-<li>打开一个<strong>subshell</strong>运行解释器去读取、执行aa.sh，文件名作为参数，<strong>无需执行权限</strong></li>
-<li>无需在首行写类似<code>#!/bin/bash*</code>来明确解释器</li>
-</ul>
-</li>
-<li><code>source aa.sh</code><ul>
-<li><strong>当前shell内</strong>读取、执行aa.sh，会保留和改变当前shell中的变量，<strong>无需执行权限</strong></li>
-<li>soure可以简化为点号”.”，推荐点号</li>
-</ul>
-</li>
-</ul>
-<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><ul>
-<li><p>$aa与${aa}没有区别，但是{}可以用来明确变量边界，同时支持拼接</p>
-</li>
-<li><p><code>readonly aa</code> 设置变量aa为只读</p>
-</li>
-<li><p><code>unset aa</code> 删除变量aa, 不能删只读变量</p>
-</li>
-<li><p>shell变量</p>
-<ul>
-<li>&#96;&#96;&#96;<br>$$ &#x2F;&#x2F; shell本身PID<br>$* $@  参数列表（不包括脚本文件名）<br>$# 参数列表中参数个数<br>$0 脚本文件名<br>$n 第n个参数<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs clean"><br>#### 字符串<br><br>+ 单引号里的任何字符都会原样输出，因而变量是无效的<br>+ 字符串长度 `$&#123;#string&#125;`<br>+ 截取子串 `$&#123;string:<span class="hljs-number">1</span>:<span class="hljs-number">4</span>&#125;` 截取string位置<span class="hljs-number">1</span>开始的<span class="hljs-number">4</span>个字符<br><br>#### 数组<br><br>```shell<br>array_name=(value0 value1 value2 value3) #不限定长度，下标从<span class="hljs-number">0</span>开始，空格分割<br>array_name[n]=valuen <br>$&#123;array_name[@]&#125; # 使用 @ 符号可以获取数组中的所有元素<br>length=$&#123;#array_name[@]&#125; # 取得数组元素的个数<br>lengthn=$&#123;#array_name[n]&#125; # 取得数组单个元素的长度<br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h4 id="多行注释"><a href="#多行注释" class="headerlink" title="多行注释"></a>多行注释</h4><ul>
-<li>&#96;&#96;&#96;shell<br>: &lt;&lt;’COMMENT’<br>something<br>COMMENT<br>或者<br>: &lt;&lt;!<br>something<br>!<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs awk"><br><span class="hljs-comment">#### Shell编码</span><br><br><span class="hljs-comment">#### cd安全</span><br><br>+ cd可能由于错误路径、无权限等问题而失败，一旦失败后续操作将在错误目录上继续执行，引发误操作。<br>+ 通过添加错误判断并<span class="hljs-keyword">exit</span>方式避免错误操作。<br><br>```shell<br>cd foo || <span class="hljs-keyword">exit</span> <span class="hljs-regexp">//</span> <span class="hljs-keyword">exit</span>返回cd错误码<br>cd foo || &#123; echo <span class="hljs-string">&quot;Failure&quot;</span>; <span class="hljs-keyword">exit</span> <span class="hljs-number">1</span>; &#125;<br></code></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h4><p>进入当前脚本路径</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$</span><span class="language-bash">(<span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(dirname $0)</span>&quot;</span>;<span class="hljs-built_in">pwd</span>)</span><br></code></pre></td></tr></table></figure>
+                <h1 id="C-多态特性及简单示例"><a href="#C-多态特性及简单示例" class="headerlink" title="C++ 多态特性及简单示例"></a>C++ 多态特性及简单示例</h1><p>C++ 是一种面向对象的编程语言，其中的多态特性允许开发者在运行时根据对象的类型来调用相应的函数。这里我会介绍 C++ 多态的概念和几种不同的实现方式，并提供一些代码示例。</p>
+<h2 id="多态-🔎"><a href="#多态-🔎" class="headerlink" title="多态 🔎"></a>多态 🔎</h2><p>多态（polymorphism）是一种基于继承的机制，它允许不同的对象对同一消息作出不同的响应。换句话说，同样的方法调用可以在不同的对象上产生不同的结果。</p>
+<p>静态多态：也称为编译时多态，主要通过函数重载和模板实现。在编译时期就能够确定函数的调用版本或者类的实例类型，因此也称为静态绑定。例如，通过重载函数名和参数列表，我们可以在编译时就确定具体调用哪个函数版本。</p>
+<p>动态多态：也称为运行时多态，主要通过虚函数实现。在编译时期无法确定函数调用的版本，而是在运行时期根据实际对象类型来确定调用哪个函数版本。因此也称为动态绑定。我们可以在基类中声明虚函数，然后在派生类中重写该函数，当使用基类指针或引用调用虚函数时，实际调用的是该指针或引用所指向的对象类型的虚函数版本。</p>
+<p>静态多态在编译时期就能够确定函数调用的版本，而动态多态需要在运行时期根据实际对象类型来确定函数调用的版本。多态机制使得我们能够编写通用的代码，更加灵活和可扩展。</p>
+<h2 id="虚函数实现多态"><a href="#虚函数实现多态" class="headerlink" title="虚函数实现多态"></a>虚函数实现多态</h2><p>虚函数是 C++ 中实现多态的一种常用方式。虚函数是在基类中声明的，用 virtual 关键字来修饰，它允许派生类重写该函数。当调用该函数时，编译器会根据实际对象的类型来调用对应的重写函数。下面是一个虚函数的示例代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Shape</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">draw</span><span class="hljs-params">()</span> </span>&#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Drawing a shape...&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Circle</span> : <span class="hljs-keyword">public</span> Shape &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">draw</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>&#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Drawing a circle...&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Square</span> : <span class="hljs-keyword">public</span> Shape &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">draw</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>&#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Drawing a square...&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    Shape* shape1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Circle</span>();<br>    Shape* shape2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Square</span>();<br>    shape1-&gt;<span class="hljs-built_in">draw</span>();<br>    shape2-&gt;<span class="hljs-built_in">draw</span>();<br>    <span class="hljs-keyword">delete</span> shape1;<br>    <span class="hljs-keyword">delete</span> shape2;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
-<p>进入当前函数执行路径，如脚本A调用脚本B，在B中执行则得到B的路径</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$</span><span class="language-bash">( <span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;<span class="hljs-subst">$( dirname <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;BASH_SOURCE[0]&#125;</span>&quot;</span> )</span>&quot;</span> &amp;&amp; <span class="hljs-built_in">pwd</span> )</span><br></code></pre></td></tr></table></figure>
+<p>在上面的代码中，我们定义了一个基类 Shape，它包含了一个虚函数 draw()。我们还定义了两个派生类 Circle 和 Square，它们都重写了 draw() 函数。在 main 函数中，我们创建了两个指向 Shape 类型的指针，分别指向 Circle 和 Square 对象。我们调用它们的 draw() 函数，这会根据实际对象的类型来调用对应的重写函数，输出不同的结果。</p>
+<h2 id="模板实现多态"><a href="#模板实现多态" class="headerlink" title="模板实现多态"></a>模板实现多态</h2><p>模板是 C++ 中另一种实现多态的方式。模板允许我们编写一种通用的函数或类，它可以根据实际类型的参数来生成不同的代码。这种技术被称为泛型编程。下面是一个模板函数的示例代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">(T value)</span> </span>&#123;<br>    std::cout &lt;&lt; value &lt;&lt; std::endl;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">print</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">10</span>);<br>    <span class="hljs-built_in">print</span>&lt;<span class="hljs-type">double</span>&gt;(<span class="hljs-number">3.14</span>);<br>    <span class="hljs-built_in">print</span>&lt;std::string&gt;(<span class="hljs-string">&quot;hello&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-
-
-<h2 id="静波代码检视"><a href="#静波代码检视" class="headerlink" title="静波代码检视"></a>静波代码检视</h2><h4 id="离线检测"><a href="#离线检测" class="headerlink" title="离线检测"></a>离线检测</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">apt-get install shellcheck<br>shellcheck file.sh<br></code></pre></td></tr></table></figure>
-
-<h4 id="在线检测"><a href="#在线检测" class="headerlink" title="在线检测"></a>在线检测</h4><ul>
-<li><p>在线检测<a target="_blank" rel="noopener" href="https://www.shellcheck.net/%EF%BC%8C%E8%B4%B4%E5%85%A5%E4%BB%A3%E7%A0%81%EF%BC%8C%E8%87%AA%E5%8A%A8%E6%A3%80%E6%B5%8B">https://www.shellcheck.net/，贴入代码，自动检测</a></p>
-</li>
-<li><p>注意加上 <code>#!/bin/bash</code>，否则报错</p>
-</li>
-</ul>
-<p><img src="/img/shell-check.png" srcset="/img/loading.gif" lazyload alt="shellcheck示意"></p>
+<p>在上面的代码中，我们定义了一个模板函数 print()，它可以接受任意类型的参数，并将其打印到标准输出中。在 main 函数中，我们调用了 print() 函数三次，分别传入 int、double 和 std::string 类型的参数。由于模板的特性，编译器会根据实际类型的参数来生成不同的代码，这样我们就实现了多态。</p>
+<p>#总结<br>本篇博客介绍了 C++ 中多态的概念和两种不同的实现方式：虚函数和模板。虚函数是一种基于继承的机制，它允许派生类重写基类的函数，从而实现多态。模板是一种通用的编程技术，它可以根据实际类型的参数来生成不同的代码，也可以实现多态。希望本篇博客能够帮助你更好地理解 C++ 中的多态特性。</p>
+<p>⚠ <strong>Note</strong>: 转载请注明出处</p>
 
                 
               </div>
@@ -358,7 +322,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Linux/">#Linux</a>
+        <a href="/tags/C/">#C++</a>
       
     </div>
   
@@ -370,8 +334,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>shell语法总结（2）</div>
-      <div>http://beidaoxiangcai.github.io/2022/07/11/shell语法总结/</div>
+      <div>C++ 多态特性及简单示例</div>
+      <div>http://beidaoxiangcai.github.io/2022/08/09/C++ 多态特性及简单示例/</div>
     </div>
     <div class="license-meta">
       
@@ -383,7 +347,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年7月11日</div>
+          <div>2022年8月9日</div>
         </div>
       
       
@@ -415,18 +379,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/09/C++%20%E5%A4%9A%E6%80%81%E7%89%B9%E6%80%A7%E5%8F%8A%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B/" title="C++ 多态特性及简单示例">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">C++ 多态特性及简单示例</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/14/shell_note/" title="shell语法总结（1）">
-                        <span class="hidden-mobile">shell语法总结（1）</span>
+                      <a href="/2022/07/11/shell%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" title="shell语法总结（2）">
+                        <span class="hidden-mobile">shell语法总结（2）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -446,8 +404,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'http://beidaoxiangcai.github.io/2022/07/11/shell%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/';
-          this.page.identifier = '/2022/07/11/shell%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/';
+          this.page.url = 'http://beidaoxiangcai.github.io/2022/08/09/C++%20%E5%A4%9A%E6%80%81%E7%89%B9%E6%80%A7%E5%8F%8A%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B/';
+          this.page.identifier = '/2022/08/09/C++%20%E5%A4%9A%E6%80%81%E7%89%B9%E6%80%A7%E5%8F%8A%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
