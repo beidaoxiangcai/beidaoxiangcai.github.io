@@ -16,16 +16,16 @@
   <meta name="author" content="Jianing Chen">
   <meta name="keywords" content="C++">
   
-    <meta name="description" content="背景 在并发编程中，使用多线程可以提高程序的执行效率。然而，手动管理线程可能会导致代码复杂和出错的风险，因此可以使用线程池来简化线程管理； 线程池通过预先创建一定数量的线程，将任务分配给这些线程执行，从而提高程序的并发性和响应速度； 线程池包括一个任务队列和一组工作线程，任务队列用于存储待执行的任务，工作线程则从任务队列中取出任务并执行。  任务队列实现 🔎 任务队列要同时从多个用户中接收用于待">
+    <meta name="description" content="C++ 线程池的实现 在并发编程中，使用多线程可以提高程序的执行效率。然而，手动管理线程可能会导致代码复杂和出错的风险，因此可以使用线程池来简化线程管理； 线程池通过预先创建一定数量的线程，将任务分配给这些线程执行，从而提高程序的并发性和响应速度； 线程池包括一个任务队列和一组工作线程，任务队列用于存储待执行的任务，工作线程则从任务队列中取出任务并执行。  任务队列实现 🔎 任务队列要同时从多个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 线程池的实现">
 <meta property="og:url" content="http://beidaoxiangcai.github.io/2022/10/23/C++%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="佳柠的博客">
-<meta property="og:description" content="背景 在并发编程中，使用多线程可以提高程序的执行效率。然而，手动管理线程可能会导致代码复杂和出错的风险，因此可以使用线程池来简化线程管理； 线程池通过预先创建一定数量的线程，将任务分配给这些线程执行，从而提高程序的并发性和响应速度； 线程池包括一个任务队列和一组工作线程，任务队列用于存储待执行的任务，工作线程则从任务队列中取出任务并执行。  任务队列实现 🔎 任务队列要同时从多个用户中接收用于待">
+<meta property="og:description" content="C++ 线程池的实现 在并发编程中，使用多线程可以提高程序的执行效率。然而，手动管理线程可能会导致代码复杂和出错的风险，因此可以使用线程池来简化线程管理； 线程池通过预先创建一定数量的线程，将任务分配给这些线程执行，从而提高程序的并发性和响应速度； 线程池包括一个任务队列和一组工作线程，任务队列用于存储待执行的任务，工作线程则从任务队列中取出任务并执行。  任务队列实现 🔎 任务队列要同时从多个">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://beidaoxiangcai.github.io/img/page/cpp.png">
 <meta property="article:published_time" content="2022-10-23T20:45:23.000Z">
-<meta property="article:modified_time" content="2023-03-05T09:13:18.897Z">
+<meta property="article:modified_time" content="2023-03-05T10:58:26.833Z">
 <meta property="article:author" content="Jianing Chen">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary_large_image">
@@ -252,7 +252,7 @@
         
         
           <!-- compatible with older versions-->
-          25 分钟
+          26 分钟
         
       </span>
     
@@ -295,7 +295,7 @@
             
               <div class="markdown-body">
                 
-                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+                <h1 id="C-线程池的实现"><a href="#C-线程池的实现" class="headerlink" title="C++ 线程池的实现"></a>C++ 线程池的实现</h1><ul>
 <li>在并发编程中，使用多线程可以提高程序的执行效率。然而，手动管理线程可能会导致代码复杂和出错的风险，因此可以使用线程池来简化线程管理；</li>
 <li>线程池通过预先创建一定数量的线程，将任务分配给这些线程执行，从而提高程序的并发性和响应速度；</li>
 <li>线程池包括一个任务队列和一组工作线程，任务队列用于存储待执行的任务，工作线程则从任务队列中取出任务并执行。</li>
