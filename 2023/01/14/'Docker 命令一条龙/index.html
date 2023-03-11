@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://beidaoxiangcai.github.io/img/page/docker.png">
 <meta property="article:published_time" content="2023-01-14T21:27:32.000Z">
-<meta property="article:modified_time" content="2023-03-11T21:52:09.219Z">
+<meta property="article:modified_time" content="2023-03-11T22:17:45.303Z">
 <meta property="article:author" content="Jianing Chen">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary_large_image">
@@ -310,11 +310,11 @@
 <p>在这个命令中，我们使用了-t参数来指定镜像的名称为hello，使用了.来表示当前目录下的Dockerfile。构建镜像的过程可能需要一些时间，取决于你的应用程序和基础镜像的大小和复杂性。</p>
 <h3 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h3><p>运行容器是Docker的另一个核心功能，它允许我们在Docker容器中运行应用程序。下面是运行容器的基本步骤：</p>
 <ol>
-<li>拉取镜像<br>在运行容器之前，我们需要拉取已经构建好的镜像。可以使用docker pull命令来拉取镜像，例如：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run -it --rm ubuntu:latest<br></code></pre></td></tr></table></figure></li>
+<li>拉取镜像<br>在运行容器之前，我们需要拉取已经构建好的镜像。可以使用docker pull命令来拉取镜像，例如：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker pull hello:latest<br></code></pre></td></tr></table></figure></li>
 <li>运行容器<br>在拉取完镜像之后，我们就可以使用docker run命令来运行容器了。下面是一个简单的运行容器的命令示例：</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run -it --rm ubuntu:latest<br></code></pre></td></tr></table></figure>
-<p>在这个命令中，我们使用了-it参数来指定容器的交互模式，–rm参数表示容器退出后会自动删除，ubuntu:latest表示使用最新版本的Ubuntu镜像来运行容器。运行容器后，你将会进入一个类似于终端的界面，可以在其中运行命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run -it --rm hello:latest<br></code></pre></td></tr></table></figure>
+<p>在这个命令中，我们使用了-it参数来指定容器的交互模式，–rm参数表示容器退出后会自动删除，hello:latest表示使用最新版本的hello镜像来运行容器。运行容器后，你将会进入一个类似于终端的界面，可以在其中运行命令。</p>
 <ol start="3">
 <li>停止容器<br>在容器运行结束后，我们可以使用docker stop命令来停止容器，例如：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker stop &lt;container_id&gt;<br></code></pre></td></tr></table></figure>
 其中，<container_id>是容器的ID，可以使用docker ps命令来查看容器的ID。</li>
