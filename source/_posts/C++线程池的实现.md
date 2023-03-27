@@ -22,7 +22,7 @@ index_img: /img/page/cpp.png
 #include <mutex>
 #include <condition_variable>
 
-template<typename T>
+template<typename T>//
 class ThreadSafeQueue {
 public:
     ThreadSafeQueue() = default;
